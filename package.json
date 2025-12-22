@@ -1,0 +1,17 @@
+{
+  "name": "domestic-simulation",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "A 3D simulation game exploring domestic work dynamics",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "playcanvas": "^2.4.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}

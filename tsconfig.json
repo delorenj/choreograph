@@ -1,0 +1,59 @@
+{
+  "compilerOptions": {
+    // Target and Module
+    "target": "ES2022",
+    "module": "ESNext",
+    "lib": ["ES2022", "DOM"],
+    "moduleResolution": "bundler",
+
+    // Strict Type Checking
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "exactOptionalPropertyTypes": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+
+    // Module Resolution
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+
+    // Source Maps and Output
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "outDir": "./dist",
+
+    // Path Aliases
+    "baseUrl": "./src",
+    "paths": {
+      "@/config/*": ["config/*"],
+      "@/data/*": ["data/*"],
+      "@/systems/*": ["systems/*"],
+      "@/presentation/*": ["presentation/*"]
+    },
+
+    // Type Definitions
+    "types": ["vite/client", "node"],
+
+    // Advanced
+    "allowJs": false,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "scenarios/**/*.json"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ]
+}

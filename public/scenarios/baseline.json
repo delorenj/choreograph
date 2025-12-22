@@ -1,0 +1,101 @@
+{
+  "id": "baseline",
+  "name": "Baseline",
+  "description": "Standard household dynamic with one employed partner. Blue Ball works full-time with invisible labor, while Red Ball manages visible household tasks. Rapport decay and employment event create asymmetric stress dynamics.",
+  "difficulty": 2,
+  "round": {
+    "durationSeconds": 120,
+    "paycheckInterval": 2
+  },
+  "blue": {
+    "workSpawnRate": 4,
+    "subtasksPerChunk": {
+      "min": 4,
+      "max": 12
+    },
+    "scopeCreepProbability": {
+      "min": 0.1,
+      "max": 0.2
+    },
+    "scopeCreepChunks": {
+      "min": 2,
+      "max": 5
+    },
+    "paycheck": 6250,
+    "contextSwitchRegrowth": 0.3,
+    "workVisibility": false
+  },
+  "red": {
+    "taskSpawnInterval": {
+      "min": 30,
+      "max": 45
+    },
+    "taskTypes": [
+      {
+        "type": "cleaning",
+        "weight": 0.3,
+        "completionTime": 20
+      },
+      {
+        "type": "cooking",
+        "weight": 0.3,
+        "completionTime": 30
+      },
+      {
+        "type": "childcare",
+        "weight": 0.25,
+        "completionTime": 40
+      },
+      {
+        "type": "errands",
+        "weight": 0.15,
+        "completionTime": 25
+      }
+    ]
+  },
+  "stress": {
+    "blue": {
+      "incompleteTaskPenalty": 0.1,
+      "helpedRedPenalty": 0.05,
+      "rapportDecayPenalty": 0.15,
+      "overflowDebuffRate": 0.1,
+      "weepingThreshold": 0.9
+    },
+    "red": {
+      "incompleteTaskPenalty": 0.08,
+      "taskCompletionReduction": 0.1,
+      "blueHelpReduction": 0.15,
+      "highStressThreshold": 0.75,
+      "sustainedStressRounds": 3,
+      "blueDebuffCompletionMultiplier": 0.7,
+      "blueDebuffRegrowthMultiplier": 1.5
+    }
+  },
+  "rapport": {
+    "initialLevel": 75,
+    "successBonus": 5,
+    "missedDeadlinePenalty": 10,
+    "compoundMultiplier": 1.5,
+    "firingThreshold": {
+      "min": 15,
+      "max": 25
+    }
+  },
+  "employmentEvent": {
+    "triggerRound": {
+      "min": 3,
+      "max": 5
+    },
+    "redIncome": 400,
+    "blueWorkTimeReduction": 0.45,
+    "enabled": true
+  },
+  "ui": {
+    "showBlueStressMeter": true,
+    "showRedStressMeter": true,
+    "showRapportGauge": true,
+    "showBalance": true,
+    "showRoundTimer": true,
+    "empathyModalInterval": 30
+  }
+}

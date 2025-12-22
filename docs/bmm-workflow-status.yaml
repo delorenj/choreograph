@@ -1,0 +1,33 @@
+# BMAD Method Workflow Status
+# Project: DomesticSimulation
+# Last Updated: 2025-12-22
+
+project:
+  name: DomesticSimulation
+  level: 3
+  type: web_game
+
+workflows:
+  phase_1_ideation:
+    brainstorm: null
+    research: null
+    product_brief: /home/delorenj/code/DomesticSimulation/PRD.md
+
+  phase_2_planning:
+    prd: /home/delorenj/code/DomesticSimulation/docs/prd-domesticsimulation-2025-12-22.md
+    architecture: /home/delorenj/code/DomesticSimulation/docs/architecture-domesticsimulation-2025-12-22.md
+    ux_design: null
+
+  phase_3_solutioning:
+    tech_spec: null
+    solutioning_gate_check: null
+
+  phase_4_implementation:
+    sprint_planning: /home/delorenj/code/DomesticSimulation/docs/sprint-plan-domesticsimulation-2025-12-22.md
+    sprint_status: /home/delorenj/code/DomesticSimulation/.bmad/sprint-status.yaml
+    stories: []
+    current_sprint: 1
+
+last_updated: 2025-12-22T22:30:00Z
+current_phase: 4
+next_recommended: create_story

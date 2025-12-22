@@ -1,34 +1,83 @@
-# Domestic Simulation
+# DomesticSimulation
 
-A 3D simulation game exploring domestic work dynamics through an interactive pinball-style environment.
+A 3D simulation game exploring domestic work dynamics through asymmetric gameplay mechanics. Built with TypeScript, PlayCanvas, and Vite using a strict layered architecture.
 
 ## Overview
 
-This game presents a cryptic visualization of household task management using a top-down angled view with two colored spheres (blue and red) representing different participants. The simulation tracks work tasks, stress levels, and resource management across daily cycles.
+DomesticSimulation simulates emotional labor dynamics through a round-based game where two colored spheres (Blue and Red) manage work and household tasks. The game features invisible work mechanics, stress systems, rapport tracking, and configuration-driven scenarios.
 
 ## Tech Stack
 
-- **PlayCanvas Engine** (v2.14.4) - WebGL/WebGPU 3D game engine
-- **Vite** (v6.4.1) - Build tool and dev server
-- **Bun** - Package manager and runtime
+- **TypeScript** (^5.3.0) - Strict mode enabled
+- **PlayCanvas** (^2.4.0) - WebGL 2.0 rendering engine
+- **Vite** (^6.0.0) - Build tool with HMR (<2s reload)
+- **Zod** (^3.22.0) - Runtime schema validation
+- **Vitest** (^2.0.0) - Unit testing framework
+- **ESLint + Prettier** - Code quality and formatting
+- **Bun** - Package manager
+
+## Architecture
+
+The project follows a strict 4-layer architecture:
+
+```
+CONFIG → DATA → SYSTEMS → PRESENTATION
+```
+
+**Dependency Rules:**
+- Config Layer: No dependencies (bottom layer)
+- Data Layer: Depends on Config
+- Systems Layer: Depends on Data and Config
+- Presentation Layer: Depends on Systems, Data, and Config (top layer)
+
+**No circular dependencies allowed. Systems cannot import from Presentation.**
 
 ## Project Structure
 
 ```
 DomesticSimulation/
 ├── src/
-│   └── main.js          # Main game initialization and scene setup
-├── index.html           # HTML entry point
-├── package.json         # Dependencies and scripts
-├── vite.config.js       # Vite configuration
-└── README.md           # This file
+│   ├── config/              # CONFIG LAYER
+│   │   ├── schema.ts        # Zod validation schemas
+│   │   ├── loader.ts        # Config loading
+│   │   ├── defaults.ts      # Default values
+│   │   └── types.ts         # Config type exports
+│   ├── data/                # DATA LAYER
+│   │   ├── entities/        # Entity type definitions
+│   │   ├── events/          # EventBus (pub/sub)
+│   │   └── state/           # Game state
+│   ├── systems/             # SYSTEMS LAYER
+│   │   ├── core/            # Core systems (RoundManager, StateMachine)
+│   │   ├── gameplay/        # Gameplay systems (Tasks, Stress, Rapport)
+│   │   ├── interaction/     # Interaction systems (Empathy, ContextSwitch)
+│   │   └── ai/              # AI controller
+│   ├── presentation/        # PRESENTATION LAYER
+│   │   ├── renderer/        # PlayCanvas rendering
+│   │   ├── ui/              # DOM UI overlay
+│   │   └── audio/           # Web Audio API
+│   └── main.ts              # Entry point
+├── scenarios/               # JSON scenario configs
+│   └── baseline.json        # Default scenario
+├── tests/
+│   ├── unit/                # Unit tests
+│   └── integration/         # Integration tests
+├── public/
+│   └── assets/              # Static assets (audio, textures)
+├── docs/                    # Documentation
+│   ├── prd-domesticsimulation-2025-12-22.md
+│   └── architecture-domesticsimulation-2025-12-22.md
+├── tsconfig.json            # TypeScript config (strict mode)
+├── vite.config.js           # Vite config (HMR, path aliases)
+├── eslint.config.js         # ESLint config (layered architecture rules)
+├── .prettierrc              # Prettier config
+└── vitest.config.ts         # Vitest config
 ```
 
 ## Getting Started
 
 ### Prerequisites
 
-- Bun installed (or Node.js 18+)
+- Bun installed (recommended) or Node.js 18+
 
 ### Installation
 
@@ -38,7 +87,7 @@ bun install
 
 ### Development
 
-Start the dev server:
+Start the dev server with hot reload:
 
 ```bash
 bun run dev
@@ -46,41 +95,80 @@ bun run dev
 
 The application will be available at `http://localhost:3000`
 
-### Build
+### Available Scripts
 
-```bash
-bun run build
+| Command | Description |
+|---------|-------------|
+| `bun run dev` | Start Vite dev server with HMR |
+| `bun run build` | Type check and build for production |
+| `bun run preview` | Preview production build locally |
+| `bun run test` | Run unit tests with Vitest |
+| `bun run test:ui` | Run tests with UI |
+| `bun run test:coverage` | Generate test coverage report |
+| `bun run lint` | Check code with ESLint |
+| `bun run lint:fix` | Fix ESLint errors automatically |
+| `bun run format` | Format code with Prettier |
+| `bun run format:check` | Check code formatting |
+| `bun run typecheck` | Type check without building |
+
+### Path Aliases
+
+The project uses TypeScript path aliases for clean imports:
+
+```typescript
+import { ScenarioConfig } from '@/config';
+import { EventBus } from '@/data/events';
+import { RoundManager } from '@/systems/core';
+import { SceneRenderer } from '@/presentation/renderer';
 ```
 
-### Preview Production Build
+## Configuration
 
-```bash
-bun run preview
+All game parameters are defined in JSON scenario files (`scenarios/*.json`). The configuration is validated at runtime using Zod schemas and frozen to ensure immutability.
+
+Example scenario:
+```json
+{
+  "id": "baseline",
+  "name": "Baseline",
+  "description": "Standard household dynamic with one employed partner",
+  "difficulty": 2
+}
 ```
 
-## Current Implementation
+## Testing
 
-The barebones setup includes:
+Run unit tests:
+```bash
+bun run test
+```
 
-- **Camera**: Top-down angled view positioned for pinball-style gameplay
-- **Lighting**: Directional light for basic scene illumination
-- **Floor Plane**: 10x10 gray surface representing the "house"
-- **Blue Ball**: Sphere at (-3, 0.5, 0) representing one participant
-- **Red Ball**: Sphere at (3, 0.5, 0) representing the other participant
+The project uses Vitest with path alias support. Tests are isolated from PlayCanvas dependencies for fast execution.
 
-## Next Steps
+## Code Quality
 
-- Implement task generation system (work chunks, household tasks)
-- Add physics for ball movement
-- Create stress meter UI
-- Implement day/round cycling
-- Add paycheck system
-- Create task completion mechanics
-- Build UI overlays for game state
+- **TypeScript Strict Mode**: All strict checks enabled
+- **ESLint**: Enforces layered architecture rules
+- **Prettier**: Consistent code formatting
+- **No `any` types**: Explicit typing required
+- **Layer Isolation**: Systems cannot import from Presentation
+
+## Performance Targets
+
+- 60 FPS on Intel HD 620 integrated graphics
+- <2 second hot reload during development
+- <16.67ms frame time budget
+- <50 draw calls per frame
+
+## Documentation
+
+- [PRD](docs/prd-domesticsimulation-2025-12-22.md) - Product Requirements
+- [Architecture](docs/architecture-domesticsimulation-2025-12-22.md) - Technical Architecture
 
 ## References
 
 - [PlayCanvas Engine API](https://api.playcanvas.com/engine/)
-- [PlayCanvas Examples](https://playcanvas.github.io)
-- [Building with PlayCanvas - MDN](https://developer.mozilla.org/en-US/docs/Games/Techniques/3D_on_the_web/Building_up_a_basic_demo_with_PlayCanvas/engine)
-- [Basic Materials Tutorial](https://developer.playcanvas.com/tutorials/basic-materials/)
+- [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+- [Vite Documentation](https://vitejs.dev/)
+- [Zod Documentation](https://zod.dev/)
+- [Vitest Documentation](https://vitest.dev/)

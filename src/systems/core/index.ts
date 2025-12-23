@@ -4,5 +4,5 @@
  * Fundamental game systems (round management, state machine, etc.)
  */
 
-// Placeholder exports - will be implemented in future stories
-export const PLACEHOLDER_CORE = 'Core systems will be implemented in future stories';
+// State Machine (Story 001-01)
+export * from './stateMachine';

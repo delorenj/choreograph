@@ -15,7 +15,7 @@ current_sprint:
   start_date: 2025-12-22
   end_date: null
   committed_points: 30
-  completed_points: 21
+  completed_points: 26
   stories:
     - id: INF-01
       title: Project Scaffolding & TypeScript Setup
@@ -44,8 +44,9 @@ current_sprint:
     - id: "001-01"
       title: Game State Machine
       points: 5
-      status: pending
+      status: completed
       assignee: developer
+      completion_date: 2025-12-23
     - id: "001-02"
       title: Round Timer System
       points: 5
@@ -57,7 +58,7 @@ sprints:
     number: 1
     focus: Infrastructure & Foundation
     committed_points: 30
-    completed_points: 21
+    completed_points: 26
     status: in_progress
     stories: [INF-01, INF-02, INF-03, INF-04, "001-01", "001-02"]
 
@@ -104,7 +105,7 @@ sprints:
 velocity_tracking:
   sprint_1:
     planned: 30
-    actual: 21
+    actual: 26
     variance: 0
   sprint_2:
     planned: 30
@@ -129,10 +130,10 @@ velocity_tracking:
 
 metrics:
   total_story_points: 180
-  completed_story_points: 21
-  completion_percentage: 12
-  average_velocity: 21
-  sprint_goal_achievement_rate: 70
+  completed_story_points: 26
+  completion_percentage: 14
+  average_velocity: 26
+  sprint_goal_achievement_rate: 87
   bug_escape_rate: 0
   test_coverage: 100
 

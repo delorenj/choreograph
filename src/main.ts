@@ -105,7 +105,7 @@ function createBasicScene(app: pc.Application): void {
  * Main initialization function
  */
 async function main(): Promise<void> {
-  console.warn('Initializing DomesticSimulation...');
+  console.warn('Initializing Choreograph...');
 
   try {
     // Initialize PlayCanvas
@@ -117,9 +117,9 @@ async function main(): Promise<void> {
     // Start the application
     app.start();
 
-    console.warn('DomesticSimulation initialized successfully');
+    console.warn('Choreograph initialized successfully');
   } catch (error) {
-    console.error('Failed to initialize DomesticSimulation:', error);
+    console.error('Failed to initialize Choreograph:', error);
     throw error;
   }
 }

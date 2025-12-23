@@ -29,7 +29,7 @@ Successfully implemented complete TypeScript + PlayCanvas + Vite project structu
 
 ### 1. TypeScript Configuration
 
-**File:** `/home/delorenj/code/DomesticSimulation/tsconfig.json`
+**File:** `/home/delorenj/code/choreograph/tsconfig.json`
 
 Features:
 - Target: ES2022
@@ -48,7 +48,7 @@ Features:
 
 ### 2. Vite Configuration
 
-**File:** `/home/delorenj/code/DomesticSimulation/vite.config.js`
+**File:** `/home/delorenj/code/choreograph/vite.config.js`
 
 Features:
 - HMR enabled with overlay
@@ -61,8 +61,8 @@ Features:
 ### 3. ESLint + Prettier
 
 **Files:**
-- `/home/delorenj/code/DomesticSimulation/eslint.config.js`
-- `/home/delorenj/code/DomesticSimulation/.prettierrc`
+- `/home/delorenj/code/choreograph/eslint.config.js`
+- `/home/delorenj/code/choreograph/.prettierrc`
 
 Features:
 - TypeScript-ESLint integration
@@ -129,7 +129,7 @@ Additional directories:
 
 ### 5. Package Configuration
 
-**File:** `/home/delorenj/code/DomesticSimulation/package.json`
+**File:** `/home/delorenj/code/choreograph/package.json`
 
 Dependencies:
 - playcanvas: ^2.4.0
@@ -194,7 +194,7 @@ Scripts:
 
 ### 7. Entry Point
 
-**File:** `/home/delorenj/code/DomesticSimulation/src/main.ts`
+**File:** `/home/delorenj/code/choreograph/src/main.ts`
 
 Features:
 - Strict TypeScript compliance
@@ -207,8 +207,8 @@ Features:
 ### 8. Testing Setup
 
 **Files:**
-- `/home/delorenj/code/DomesticSimulation/vitest.config.ts`
-- `/home/delorenj/code/DomesticSimulation/tests/unit/example.test.ts`
+- `/home/delorenj/code/choreograph/vitest.config.ts`
+- `/home/delorenj/code/choreograph/tests/unit/example.test.ts`
 
 Features:
 - Vitest configuration with path aliases
@@ -219,7 +219,7 @@ Features:
 
 ### 9. Scenario Configuration
 
-**File:** `/home/delorenj/code/DomesticSimulation/scenarios/baseline.json`
+**File:** `/home/delorenj/code/choreograph/scenarios/baseline.json`
 
 Baseline scenario with:
 - ID: baseline
@@ -229,7 +229,7 @@ Baseline scenario with:
 
 ### 10. Documentation
 
-**File:** `/home/delorenj/code/DomesticSimulation/README.md`
+**File:** `/home/delorenj/code/choreograph/README.md`
 
 Comprehensive README with:
 - Project overview

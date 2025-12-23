@@ -1,10 +1,16 @@
-# DomesticSimulation
+# Choreograph
 
-A 3D simulation game exploring domestic work dynamics through asymmetric gameplay mechanics. Built with TypeScript, PlayCanvas, and Vite using a strict layered architecture.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)](https://www.typescriptlang.org/)
+[![Bun](https://img.shields.io/badge/Bun-latest-black.svg)](https://bun.sh/)
+
+Asymmetric household labor simulation. Invisible work, visible stress, impossible balance.
+
+Built with TypeScript, PlayCanvas, and Vite using a strict layered architecture.
 
 ## Overview
 
-DomesticSimulation simulates emotional labor dynamics through a round-based game where two colored spheres (Blue and Red) manage work and household tasks. The game features invisible work mechanics, stress systems, rapport tracking, and configuration-driven scenarios.
+Choreograph simulates emotional labor dynamics through a round-based game where two colored spheres (Blue and Red) manage work and household tasks. Blue handles invisible employment work with scope creep and context-switching penalties. Red manages visible household tasks with asymmetric stress mechanics. The game features rapport tracking, employment events, and configuration-driven scenarios that reveal the systemic impossibility of "having it all."
 
 ## Tech Stack
 
@@ -35,7 +41,7 @@ CONFIG → DATA → SYSTEMS → PRESENTATION
 ## Project Structure
 
 ```
-DomesticSimulation/
+choreograph/
 ├── src/
 │   ├── config/              # CONFIG LAYER
 │   │   ├── schema.ts        # Zod validation schemas
@@ -162,8 +168,8 @@ The project uses Vitest with path alias support. Tests are isolated from PlayCan
 
 ## Documentation
 
-- [PRD](docs/prd-domesticsimulation-2025-12-22.md) - Product Requirements
-- [Architecture](docs/architecture-domesticsimulation-2025-12-22.md) - Technical Architecture
+- [PRD](docs/prd-choreograph-2025-12-22.md) - Product Requirements
+- [Architecture](docs/architecture-choreograph-2025-12-22.md) - Technical Architecture
 
 ## References
 

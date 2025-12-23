@@ -1,8 +1,23 @@
 {
-  "name": "domestic-simulation",
+  "name": "choreograph",
   "version": "0.1.0",
   "type": "module",
-  "description": "A 3D simulation game exploring domestic work dynamics",
+  "private": false,
+  "license": "MIT",
+  "description": "Asymmetric household labor simulation. Invisible work, visible stress, impossible balance.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/delorenj/choreograph.git"
+  },
+  "keywords": [
+    "game",
+    "simulation",
+    "emotional-labor",
+    "household-dynamics",
+    "playcanvas",
+    "typescript"
+  ],
+  "author": "Jarad DeLorenzo",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

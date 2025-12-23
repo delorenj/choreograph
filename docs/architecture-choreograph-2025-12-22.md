@@ -1,10 +1,10 @@
-# Architecture Document: DomesticSimulation
+# Architecture Document: Choreograph
 
 **Date:** 2025-12-22
 **Author:** System Architect
 **Version:** 1.0
 **Status:** Draft
-**PRD Reference:** `/home/delorenj/code/DomesticSimulation/docs/prd-domesticsimulation-2025-12-22.md`
+**PRD Reference:** `/home/delorenj/code/choreograph/docs/prd-choreograph-2025-12-22.md`
 
 ---
 
@@ -26,7 +26,7 @@
 
 ## 1. Executive Summary
 
-DomesticSimulation is a single-player 3D web game built with PlayCanvas that simulates emotional labor dynamics through asymmetric gameplay mechanics. This architecture document defines a **layered, configuration-driven game architecture** optimized for:
+Choreograph is a single-player 3D web game built with PlayCanvas that simulates emotional labor dynamics through asymmetric gameplay mechanics. This architecture document defines a **layered, configuration-driven game architecture** optimized for:
 
 - 60 FPS performance on integrated graphics
 - Complete scenario configurability via JSON/YAML
@@ -1500,7 +1500,7 @@ type ParticleEffectType =
 
 ### 9.1 Security Model
 
-DomesticSimulation is a **client-side only** application with no backend services. Security considerations are minimal but include:
+Choreograph is a **client-side only** application with no backend services. Security considerations are minimal but include:
 
 | Concern | Mitigation |
 |---------|-----------|
@@ -1647,7 +1647,7 @@ npm run test         # Vitest unit tests
 
 **Status:** Accepted
 
-**Context:** Game architectures typically use Entity-Component-System (ECS) for flexibility. However, DomesticSimulation has fixed entity types (2 balls, N tasks) and complex business rules.
+**Context:** Game architectures typically use Entity-Component-System (ECS) for flexibility. However, Choreograph has fixed entity types (2 balls, N tasks) and complex business rules.
 
 **Decision:** Use layered architecture (Config -> Data -> Systems -> Presentation) with ECS-inspired patterns (entities, components, systems).
 
@@ -1756,10 +1756,10 @@ npm run test         # Vitest unit tests
 ### Appendix A: File Structure
 
 ```
-DomesticSimulation/
+choreograph/
   docs/
-    prd-domesticsimulation-2025-12-22.md
-    architecture-domesticsimulation-2025-12-22.md
+    prd-choreograph-2025-12-22.md
+    architecture-choreograph-2025-12-22.md
 
   public/
     assets/

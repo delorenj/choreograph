@@ -1,4 +1,4 @@
-# Product Requirements Document: DomesticSimulation
+# Product Requirements Document: Choreograph
 
 **Date:** 2025-12-22
 **Author:** Jarad DeLorenzo
@@ -11,16 +11,16 @@
 
 ## Document Overview
 
-This Product Requirements Document (PRD) defines the functional and non-functional requirements for DomesticSimulation, a 3D web-based simulation game built with PlayCanvas that uses metaphor and gameplay to illustrate invisible labor dynamics, asymmetric household stress, and employment precarity.
+This Product Requirements Document (PRD) defines the functional and non-functional requirements for Choreograph, a 3D web-based simulation game built with PlayCanvas that uses metaphor and gameplay to illustrate invisible labor dynamics, asymmetric household stress, and employment precarity.
 
 **Related Documents:**
-- Product Brief: /home/delorenj/code/DomesticSimulation/PRD.md (original transcript)
+- Product Brief: /home/delorenj/code/choreograph/PRD.md (original transcript)
 
 ---
 
 ## Executive Summary
 
-DomesticSimulation is an emotional labor simulation game that uses cryptic visual metaphor to reveal invisible work dynamics in households where one partner is employed and the other manages household tasks. Players control either a Blue Ball (employed partner with invisible work) or Red Ball (household manager with visible tasks) in a top-down 3D environment.
+Choreograph is an emotional labor simulation game that uses cryptic visual metaphor to reveal invisible work dynamics in households where one partner is employed and the other manages household tasks. Players control either a Blue Ball (employed partner with invisible work) or Red Ball (household manager with visible tasks) in a top-down 3D environment.
 
 The game uses round-based progression (1 round = 1 week), asymmetric stress mechanics, and context-switching penalties to demonstrate how invisible labor, lack of support, and financial precarity create unsustainable household dynamics. Educational empathy modals provide gentle, non-triggering guidance on mutual support.
 

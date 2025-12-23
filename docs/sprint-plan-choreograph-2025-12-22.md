@@ -1,12 +1,12 @@
-# Sprint Planning Document: DomesticSimulation
+# Sprint Planning Document: Choreograph
 
 **Date:** 2025-12-22
 **Author:** BMAD Scrum Master (Automated)
 **Version:** 1.0
 **Status:** Ready for Implementation
 **Based on:**
-- PRD v1.0 (`/home/delorenj/code/DomesticSimulation/docs/prd-domesticsimulation-2025-12-22.md`)
-- Architecture v1.0 (`/home/delorenj/code/DomesticSimulation/docs/architecture-domesticsimulation-2025-12-22.md`)
+- PRD v1.0 (`/home/delorenj/code/choreograph/docs/prd-choreograph-2025-12-22.md`)
+- Architecture v1.0 (`/home/delorenj/code/choreograph/docs/architecture-choreograph-2025-12-22.md`)
 
 ---
 
@@ -2161,8 +2161,8 @@ So that **movement feels natural and I don't have to aim precisely**
 **Author**: BMAD Scrum Master (Automated)
 
 **Based on**:
-- PRD v1.0 (`/home/delorenj/code/DomesticSimulation/docs/prd-domesticsimulation-2025-12-22.md`)
-- Architecture v1.0 (`/home/delorenj/code/DomesticSimulation/docs/architecture-domesticsimulation-2025-12-22.md`)
+- PRD v1.0 (`/home/delorenj/code/choreograph/docs/prd-choreograph-2025-12-22.md`)
+- Architecture v1.0 (`/home/delorenj/code/choreograph/docs/architecture-choreograph-2025-12-22.md`)
 
 ---
 

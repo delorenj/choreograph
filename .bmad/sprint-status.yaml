@@ -10,46 +10,16 @@ project:
   velocity_per_sprint: 30
 
 current_sprint:
-  number: 1
+  number: 2
   status: in_progress
-  start_date: 2025-12-22
+  start_date: 2025-12-24
   end_date: null
   committed_points: 30
-  completed_points: 31
+  completed_points: 3
   stories:
-    - id: INF-01
-      title: Project Scaffolding & TypeScript Setup
+    - id: "001-03"
+      title: Role Selection Screen
       points: 3
-      status: completed
-      assignee: developer
-      completion_date: 2025-12-22
-    - id: INF-02
-      title: EventBus Infrastructure
-      points: 5
-      status: completed
-      assignee: developer
-      completion_date: 2025-12-22
-    - id: INF-03
-      title: Entity Store & Game State
-      points: 5
-      status: completed
-      assignee: developer
-      completion_date: 2025-12-22
-    - id: INF-04
-      title: Configuration System Foundation
-      points: 8
-      status: completed
-      assignee: developer
-      completion_date: 2025-12-22
-    - id: "001-01"
-      title: Game State Machine
-      points: 5
-      status: completed
-      assignee: developer
-      completion_date: 2025-12-23
-    - id: "001-02"
-      title: Round Timer System
-      points: 5
       status: completed
       assignee: developer
       completion_date: 2025-12-24
@@ -67,8 +37,8 @@ sprints:
     number: 2
     focus: Core Game Loop
     committed_points: 30
-    completed_points: 0
-    status: planned
+    completed_points: 3
+    status: in_progress
     stories: ["001-03", "001-04", "001-05", "001-06", "002-01", "002-02", "002-04", "003-01"]
 
   sprint_3:
@@ -110,8 +80,8 @@ velocity_tracking:
     variance: 1
   sprint_2:
     planned: 30
-    actual: 0
-    variance: 0
+    actual: 3
+    variance: -27
   sprint_3:
     planned: 30
     actual: 0
@@ -131,9 +101,9 @@ velocity_tracking:
 
 metrics:
   total_story_points: 180
-  completed_story_points: 31
-  completion_percentage: 17
-  average_velocity: 31
+  completed_story_points: 34
+  completion_percentage: 19
+  average_velocity: 17
   sprint_goal_achievement_rate: 103
   bug_escape_rate: 0
   test_coverage: 100

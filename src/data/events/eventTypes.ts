@@ -13,7 +13,7 @@
 
 /**
  * Union type of all possible game events
- * 13 core events covering rounds, tasks, stress, rapport, empathy, employment, and game state
+ * 14 core events covering rounds, tasks, stress, rapport, empathy, employment, role selection, and game state
  */
 export type GameEventType =
   // Round Events (4)
@@ -35,6 +35,8 @@ export type GameEventType =
   | 'empathy:dismissed'
   // Employment Events (1)
   | 'employment:event'
+  // Role Events (1)
+  | 'role:selected'
   // Game Events (2)
   | 'game:fired'
   | 'game:stateChanged';
@@ -143,6 +145,11 @@ export interface GameEventPayload {
     roundNumber: number;
     redIncome: number; // $400/round
     blueWorkTimeReduction: number; // 0.45 = 45%
+  };
+
+  // Role Events
+  'role:selected': {
+    role: 'blue' | 'red';
   };
 
   // Game Events

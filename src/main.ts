@@ -7,16 +7,15 @@
 
 import * as pc from 'playcanvas';
 
-// Import layers (placeholder imports for now)
-// These imports ensure all layers are included in the build
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import * as config from './config';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import * as data from './data';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import * as systems from './systems';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import * as presentation from './presentation';
+// Import layers
+import { ConfigLoader } from './config/loader';
+import { EventBus } from './data/events/eventBus';
+import { EntityStore } from './data/state/entityStore';
+import { GameStateMachine } from './systems/core/stateMachine/GameStateMachine';
+import { RoundManager } from './systems/core/roundManager';
+import { UIManager } from './presentation/ui';
+import type { GameState } from './data/state/gameState';
+import type { RoundManagerConfig } from './systems/core/roundManager';
 
 /**
  * Initialize the PlayCanvas application
@@ -102,12 +101,109 @@ function createBasicScene(app: pc.Application): void {
 }
 
 /**
+ * Initialize game systems (Data + Systems layers)
+ */
+async function initializeGameSystems(): Promise<{
+  eventBus: EventBus;
+  stateMachine: GameStateMachine;
+  entityStore: EntityStore;
+  roundManager: RoundManager;
+  uiManager: UIManager;
+}> {
+  // Load configuration
+  const configLoader = new ConfigLoader();
+  await configLoader.load();
+  const config = configLoader.getConfig();
+
+  // Initialize Data layer
+  const eventBus = new EventBus();
+  const stateMachine = new GameStateMachine(eventBus, 'LOADING');
+
+  // Create initial game state
+  const initialState: GameState = {
+    currentRound: {
+      number: 1,
+      phase: 'IDLE',
+      elapsedTime: 0,
+      remainingTime: config.round.durationSeconds,
+      isPaycheckRound: false,
+      startedAt: null,
+      endedAt: null,
+    },
+    playerRole: 'blue', // Default, will be set by role selection
+    gamePhase: 'LOADING',
+    blueBall: {
+      id: 'blue',
+      role: 'blue',
+      position: { x: -2, y: 1, z: 0 },
+      velocity: { x: 0, y: 0, z: 0 },
+      stress: 0,
+      currentTask: null,
+      isAI: true, // Will be updated based on role selection
+    },
+    redBall: {
+      id: 'red',
+      role: 'red',
+      position: { x: 2, y: 1, z: 0 },
+      velocity: { x: 0, y: 0, z: 0 },
+      stress: 0,
+      currentTask: null,
+      isAI: true, // Will be updated based on role selection
+    },
+    blueTasks: new Map(),
+    redTasks: new Map(),
+    financialState: {
+      balance: config.financial.startingBalance,
+      lastPaycheckAmount: 0,
+      totalIncome: 0,
+      totalExpenses: 0,
+    },
+    employmentEventTriggered: false,
+    roundsSinceHighRedStress: 0,
+    activeModal: null,
+    tutorialState: {
+      hasSeenFirstTask: false,
+      hasSeenFirstHelpRequest: false,
+      hasSeenFirstDebuff: false,
+      tutorialEnabled: config.tutorial.enabled,
+    },
+  };
+
+  const entityStore = new EntityStore(initialState);
+
+  // Initialize Systems layer
+  const roundConfig: RoundManagerConfig = {
+    durationSeconds: config.round.durationSeconds,
+    paycheckInterval: config.round.paycheckInterval,
+  };
+  const roundManager = new RoundManager(eventBus, stateMachine, roundConfig);
+
+  // Initialize Presentation layer (UI)
+  const uiManager = new UIManager(eventBus, stateMachine, entityStore);
+
+  // Transition to role selection
+  stateMachine.startGame(); // LOADING -> SCENARIO_SELECT
+  stateMachine.selectScenario(); // SCENARIO_SELECT -> ROLE_SELECT
+
+  return {
+    eventBus,
+    stateMachine,
+    entityStore,
+    roundManager,
+    uiManager,
+  };
+}
+
+/**
  * Main initialization function
  */
 async function main(): Promise<void> {
   console.warn('Initializing Choreograph...');
 
   try {
+    // Initialize game systems first
+    const gameSystems = await initializeGameSystems();
+
     // Initialize PlayCanvas
     const app = initializePlayCanvas();
 
@@ -118,6 +214,11 @@ async function main(): Promise<void> {
     app.start();
 
     console.warn('Choreograph initialized successfully');
+    console.warn('Game systems:', {
+      eventBus: gameSystems.eventBus,
+      stateMachine: gameSystems.stateMachine,
+      currentState: gameSystems.stateMachine.getState(),
+    });
   } catch (error) {
     console.error('Failed to initialize Choreograph:', error);
     throw error;

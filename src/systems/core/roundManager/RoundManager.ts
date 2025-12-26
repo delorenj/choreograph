@@ -16,6 +16,7 @@ import { GameStateMachine } from '../stateMachine/GameStateMachine';
 export interface RoundManagerConfig {
   durationSeconds: number;
   paycheckInterval: number;
+  paycheckAmount: number;
 }
 
 /**
@@ -310,7 +311,7 @@ export class RoundManager {
       blueStressChange: 0,
       redStressChange: 0,
       rapportChange: 0,
-      incomeReceived: this.currentRound.isPaycheckRound ? 6250 : 0,
+      incomeReceived: this.currentRound.isPaycheckRound ? this.config.paycheckAmount : 0,
       runningBalance: 0,
     };
 

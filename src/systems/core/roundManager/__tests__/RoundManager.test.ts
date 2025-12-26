@@ -29,6 +29,7 @@ describe('RoundManager', () => {
     config = {
       durationSeconds: 120,
       paycheckInterval: 2,
+      paycheckAmount: 6250,
     };
 
     roundManager = new RoundManager(eventBus, stateMachine, config);

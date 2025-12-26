@@ -174,6 +174,7 @@ async function initializeGameSystems(): Promise<{
   const roundConfig: RoundManagerConfig = {
     durationSeconds: config.round.durationSeconds,
     paycheckInterval: config.round.paycheckInterval,
+    paycheckAmount: config.blue.paycheck,
   };
   const roundManager = new RoundManager(eventBus, stateMachine, roundConfig);
 

@@ -146,7 +146,7 @@ export class ConfigLoader {
     if (this.activeConfig === null) {
       throw new Error('No scenario loaded. Call loadScenario() first.');
     }
-    return this.activeConfig;
+    return Object.freeze({ ...this.activeConfig });
   }
 
   /**

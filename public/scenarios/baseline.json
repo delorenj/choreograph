@@ -1,12 +1,14 @@
 {
   "id": "baseline",
   "name": "Baseline",
-  "description": "Standard household dynamic with one employed partner. Blue Ball works full-time with invisible labor, while Red Ball manages visible household tasks. Rapport decay and employment event create asymmetric stress dynamics.",
+  "description": "Standard household dynamic with one employed partner",
   "difficulty": 2,
+
   "round": {
     "durationSeconds": 120,
     "paycheckInterval": 2
   },
+
   "blue": {
     "workSpawnRate": 4,
     "subtasksPerChunk": {
@@ -25,6 +27,7 @@
     "contextSwitchRegrowth": 0.3,
     "workVisibility": false
   },
+
   "red": {
     "taskSpawnInterval": {
       "min": 30,
@@ -53,6 +56,7 @@
       }
     ]
   },
+
   "stress": {
     "blue": {
       "incompleteTaskPenalty": 0.1,
@@ -71,6 +75,7 @@
       "blueDebuffRegrowthMultiplier": 1.5
     }
   },
+
   "rapport": {
     "initialLevel": 75,
     "successBonus": 5,
@@ -81,6 +86,7 @@
       "max": 25
     }
   },
+
   "employmentEvent": {
     "triggerRound": {
       "min": 3,
@@ -90,6 +96,7 @@
     "blueWorkTimeReduction": 0.45,
     "enabled": true
   },
+
   "ui": {
     "showBlueStressMeter": true,
     "showRedStressMeter": true,
@@ -97,5 +104,13 @@
     "showBalance": true,
     "showRoundTimer": true,
     "empathyModalInterval": 30
+  },
+
+  "financial": {
+    "startingBalance": 10000
+  },
+
+  "tutorial": {
+    "enabled": true
   }
 }

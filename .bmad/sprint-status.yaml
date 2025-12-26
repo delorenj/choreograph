@@ -1,146 +1,327 @@
-# Sprint Status Tracking: Choreograph
-# Generated: 2025-12-22
-# BMAD Method v6 - Sprint Planning Phase
-
-project:
-  name: Choreograph
-  total_sprints: 6
-  sprint_duration_weeks: 2
-  team_size: 1
-  velocity_per_sprint: 30
-
-current_sprint:
-  number: 2
-  status: in_progress
-  start_date: 2025-12-24
-  end_date: null
-  committed_points: 30
-  completed_points: 3
-  stories:
-    - id: "001-03"
-      title: Role Selection Screen
-      points: 3
-      status: completed
-      assignee: developer
-      completion_date: 2025-12-24
+version: "6.0.0"
+project_name: "choreograph"
+project_level: 3
+current_sprint: 1
+sprint_plan_path: "/home/delorenj/code/Choreography/docs/sprint-plan-choreograph-2025-12-25.md"
 
 sprints:
-  sprint_1:
-    number: 1
-    focus: Infrastructure & Foundation
-    committed_points: 30
-    completed_points: 31
-    status: completed
-    stories: [INF-01, INF-02, INF-03, INF-04, "001-01", "001-02"]
-
-  sprint_2:
-    number: 2
-    focus: Core Game Loop
-    committed_points: 30
-    completed_points: 3
-    status: in_progress
-    stories: ["001-03", "001-04", "001-05", "001-06", "002-01", "002-02", "002-04", "003-01"]
-
-  sprint_3:
-    number: 3
-    focus: Task Systems & Physics
-    committed_points: 30
+  - sprint_number: 1
+    start_date: "2025-12-25"
+    end_date: "2026-01-08"
+    capacity_points: 30
+    committed_points: 27
     completed_points: 0
-    status: planned
-    stories: ["002-03", "003-02", "004-01", "004-02", "004-03", "004-04", "004-05", "007-01"]
+    status: "not_started"
+    goal: "Establish core game loop foundation, configuration system, and basic task interaction"
+    stories:
+      - story_id: "STORY-040"
+        title: "Scenario Configuration Schema"
+        points: 3
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-041"
+        title: "Default Scenario Configuration"
+        points: 1
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-001"
+        title: "Round Timer System"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-002"
+        title: "Role Selection Screen"
+        points: 3
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-004"
+        title: "Paycheck Cycle Integration"
+        points: 2
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-017"
+        title: "Button-Hold Task Completion"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-019"
+        title: "Physics-Based Ball Movement"
+        points: 3
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-020"
+        title: "Task Gravity Mechanic"
+        points: 3
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-033"
+        title: "Fixed Isometric Camera"
+        points: 2
+        status: "not_started"
+        assigned_to: null
 
-  sprint_4:
-    number: 4
-    focus: Stress & Rapport Systems
-    committed_points: 30
+  - sprint_number: 2
+    start_date: "2026-01-08"
+    end_date: "2026-01-22"
+    capacity_points: 30
+    committed_points: 26
     completed_points: 0
-    status: planned
-    stories: ["002-05", "002-06", "002-07", "002-08", "005-01", "005-02", "005-03", "005-04", "005-05"]
+    status: "not_started"
+    goal: "Complete task interaction feedback and implement work spawning for both balls"
+    stories:
+      - story_id: "STORY-018"
+        title: "Task Completion Audio Feedback"
+        points: 3
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-021"
+        title: "Task Completion Visual Feedback"
+        points: 3
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-006"
+        title: "Blue Work Tube and Spawning"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-007"
+        title: "Work Chunk Decomposition"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-008"
+        title: "Scope Creep Mechanic"
+        points: 3
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-013"
+        title: "Red Task Spawning System"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-014"
+        title: "Red Task Type Configuration"
+        points: 2
+        status: "not_started"
+        assigned_to: null
 
-  sprint_5:
-    number: 5
-    focus: Advanced Features
-    committed_points: 30
+  - sprint_number: 3
+    start_date: "2026-01-22"
+    end_date: "2026-02-05"
+    capacity_points: 30
+    committed_points: 26
     completed_points: 0
-    status: planned
-    stories: ["003-03", "003-04", "003-05", "004-06", "005-06", "005-07", "005-08", "006-01", "006-02"]
+    status: "not_started"
+    goal: "Complete Blue employment mechanics and financial tracking"
+    stories:
+      - story_id: "STORY-009"
+        title: "Employment Rapport System"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-010"
+        title: "Firing Event"
+        points: 3
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-011"
+        title: "Paycheck Income System"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-012"
+        title: "Context Switching Penalty"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-015"
+        title: "Red Task Refusal Mechanic"
+        points: 3
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-016"
+        title: "Red Sleep Mechanic"
+        points: 2
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-042"
+        title: "Configuration Modularity"
+        points: 3
+        status: "not_started"
+        assigned_to: null
 
-  sprint_6:
-    number: 6
-    focus: Polish & Integration
-    committed_points: 30
+  - sprint_number: 4
+    start_date: "2026-02-05"
+    end_date: "2026-02-19"
+    capacity_points: 30
+    committed_points: 26
     completed_points: 0
-    status: planned
-    stories: ["005-09", "006-03", "006-04", "007-02", "007-03", "007-04", "007-05", "008-03", "008-04"]
+    status: "not_started"
+    goal: "Implement asymmetric stress mechanics for both balls"
+    stories:
+      - story_id: "STORY-022"
+        title: "Blue Stress Meter"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-023"
+        title: "Blue Cannot Request Help"
+        points: 1
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-024"
+        title: "Blue Weeping Animation"
+        points: 2
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-025"
+        title: "Blue Stress Overflow Debuffs"
+        points: 3
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-026"
+        title: "Red Stress Meter"
+        points: 3
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-027"
+        title: "Red Help Request System"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-028"
+        title: "Red Stress Debuffs to Blue"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-034"
+        title: "Camera Panning"
+        points: 3
+        status: "not_started"
+        assigned_to: null
 
-velocity_tracking:
-  sprint_1:
-    planned: 30
-    actual: 31
-    variance: 1
-  sprint_2:
-    planned: 30
-    actual: 3
-    variance: -27
-  sprint_3:
-    planned: 30
-    actual: 0
-    variance: 0
-  sprint_4:
-    planned: 30
-    actual: 0
-    variance: 0
-  sprint_5:
-    planned: 30
-    actual: 0
-    variance: 0
-  sprint_6:
-    planned: 30
-    actual: 0
-    variance: 0
+  - sprint_number: 5
+    start_date: "2026-02-19"
+    end_date: "2026-03-05"
+    capacity_points: 30
+    committed_points: 23
+    completed_points: 0
+    status: "not_started"
+    goal: "Complete AI opponent system and empathy mechanics"
+    stories:
+      - story_id: "STORY-003"
+        title: "AI Opponent System"
+        points: 8
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-029"
+        title: "Empathy Action Modals"
+        points: 8
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-005"
+        title: "End-of-Round Summary Screen"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-044"
+        title: "First Task Tutorial"
+        points: 2
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-045"
+        title: "First Help Request Tutorial"
+        points: 2
+        status: "not_started"
+        assigned_to: null
 
-metrics:
-  total_story_points: 180
-  completed_story_points: 34
-  completion_percentage: 19
-  average_velocity: 17
-  sprint_goal_achievement_rate: 103
-  bug_escape_rate: 0
-  test_coverage: 100
+  - sprint_number: 6
+    start_date: "2026-03-05"
+    end_date: "2026-03-19"
+    capacity_points: 30
+    committed_points: 23
+    completed_points: 0
+    status: "not_started"
+    goal: "Implement Red's job event and complete audio systems"
+    stories:
+      - story_id: "STORY-030"
+        title: "Red Employment Event Trigger"
+        points: 3
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-031"
+        title: "Red Part-Time Income"
+        points: 2
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-032"
+        title: "Blue Work Time Reduction"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-035"
+        title: "Audio Feedback System"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-036"
+        title: "Adaptive Background Music"
+        points: 8
+        status: "not_started"
+        assigned_to: null
 
-risks:
-  - id: RISK-001
-    description: PlayCanvas learning curve delays Sprint 3
-    probability: medium
-    impact: high
-    status: open
-    mitigation: Allocate extra research time, use official examples
+  - sprint_number: 7
+    start_date: "2026-03-19"
+    end_date: "2026-04-02"
+    capacity_points: 30
+    committed_points: 26
+    completed_points: 0
+    status: "not_started"
+    goal: "Visual polish, tutorial system, and scenario selection"
+    stories:
+      - story_id: "STORY-043"
+        title: "Tutorial Modal System"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-037"
+        title: "Task Completion Particles"
+        points: 3
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-038"
+        title: "Stress-Based Color Grading"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-039"
+        title: "Ball Emissive Glow"
+        points: 2
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-046"
+        title: "Scenario Selection Screen"
+        points: 5
+        status: "not_started"
+        assigned_to: null
+      - story_id: "STORY-047"
+        title: "Config Hot-Reload Dev Mode"
+        points: 3
+        status: "not_started"
+        assigned_to: null
 
-  - id: RISK-002
-    description: Physics tuning takes longer than estimated
-    probability: medium
-    impact: medium
-    status: open
-    mitigation: Allocate dedicated tuning time, use configurable parameters
+velocity:
+  sprint_1: null  # Will be filled when sprint completes
+  sprint_2: null
+  sprint_3: null
+  sprint_4: null
+  sprint_5: null
+  sprint_6: null
+  sprint_7: null
+  rolling_average: null
 
-  - id: RISK-003
-    description: Stress calculation bugs hard to debug
-    probability: medium
-    impact: high
-    status: open
-    mitigation: Comprehensive unit tests, visual debug overlays
-
-  - id: RISK-004
-    description: Performance drops below 60 FPS
-    probability: medium
-    impact: high
-    status: open
-    mitigation: Continuous profiling, object pooling, render batching
-
-blockers: []
-
-notes:
-  - Sprint plan created: 2025-12-22
-  - Total scope: 47 stories across 6 sprints
-  - All Must Have FRs covered (18/18)
-  - Ready to begin Sprint 1
+team:
+  size: 1
+  experience_level: "senior"
+  sprint_length_weeks: 2
+  capacity_per_sprint: 30

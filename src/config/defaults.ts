@@ -15,6 +15,8 @@ import type {
   RapportConfig,
   EmploymentEventConfig,
   UIConfig,
+  FinancialConfig,
+  TutorialConfig,
   ScenarioConfig,
   RedTaskType,
 } from './schema';
@@ -152,6 +154,22 @@ export const DEFAULT_UI_CONFIG: UIConfig = {
 };
 
 // =============================================================================
+// FINANCIAL DEFAULTS
+// =============================================================================
+
+export const DEFAULT_FINANCIAL_CONFIG: FinancialConfig = {
+  startingBalance: 10000,
+};
+
+// =============================================================================
+// TUTORIAL DEFAULTS
+// =============================================================================
+
+export const DEFAULT_TUTORIAL_CONFIG: TutorialConfig = {
+  enabled: true,
+};
+
+// =============================================================================
 // COMPLETE SCENARIO DEFAULTS
 // =============================================================================
 
@@ -167,4 +185,6 @@ export const DEFAULT_SCENARIO: ScenarioConfig = {
   rapport: DEFAULT_RAPPORT_CONFIG,
   employmentEvent: DEFAULT_EMPLOYMENT_EVENT_CONFIG,
   ui: DEFAULT_UI_CONFIG,
+  financial: DEFAULT_FINANCIAL_CONFIG,
+  tutorial: DEFAULT_TUTORIAL_CONFIG,
 };

@@ -112,8 +112,7 @@ async function initializeGameSystems(): Promise<{
 }> {
   // Load configuration
   const configLoader = new ConfigLoader();
-  await configLoader.load();
-  const config = configLoader.getConfig();
+  const config = configLoader.loadDefault();
 
   // Initialize Data layer
   const eventBus = new EventBus();
@@ -180,6 +179,16 @@ async function initializeGameSystems(): Promise<{
 
   // Initialize Presentation layer (UI)
   const uiManager = new UIManager(eventBus, stateMachine, entityStore);
+
+  // Wire up summary dismissal to continue to next round
+  eventBus.on('summary:dismissed', () => {
+    roundManager.continueToNextRound();
+  });
+
+  // Wire up role selection to start first round
+  eventBus.on('role:selected', () => {
+    roundManager.startRound();
+  });
 
   // Transition to role selection
   stateMachine.startGame(); // LOADING -> SCENARIO_SELECT

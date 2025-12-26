@@ -152,6 +152,26 @@ export const UIConfigSchema = z.object({
 export type UIConfig = z.infer<typeof UIConfigSchema>;
 
 // =============================================================================
+// FINANCIAL CONFIGURATION
+// =============================================================================
+
+export const FinancialConfigSchema = z.object({
+  startingBalance: z.number().min(0).default(10000),
+});
+
+export type FinancialConfig = z.infer<typeof FinancialConfigSchema>;
+
+// =============================================================================
+// TUTORIAL CONFIGURATION
+// =============================================================================
+
+export const TutorialConfigSchema = z.object({
+  enabled: z.boolean().default(true),
+});
+
+export type TutorialConfig = z.infer<typeof TutorialConfigSchema>;
+
+// =============================================================================
 // SCENARIO CONFIGURATION (TOP LEVEL)
 // =============================================================================
 
@@ -170,6 +190,8 @@ export const ScenarioConfigSchema = z.object({
   rapport: RapportConfigSchema,
   employmentEvent: EmploymentEventConfigSchema,
   ui: UIConfigSchema,
+  financial: FinancialConfigSchema,
+  tutorial: TutorialConfigSchema,
 });
 
 export type ScenarioConfig = z.infer<typeof ScenarioConfigSchema>;

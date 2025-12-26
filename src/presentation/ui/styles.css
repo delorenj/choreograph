@@ -146,6 +146,227 @@
   }
 }
 
+/* ============================================================
+   Timer HUD Styles (STORY-001)
+   ============================================================ */
+
+.timer-hud {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.timer-container {
+  background: rgba(0, 0, 0, 0.85);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  min-width: 250px;
+}
+
+.timer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.round-label {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.round-label #round-number {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.paycheck-indicator {
+  font-size: 0.75rem;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.3), rgba(22, 163, 74, 0.2));
+  border: 1px solid rgba(34, 197, 94, 0.5);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.timer-display {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.timer-label {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+.timer-value {
+  font-size: 2rem;
+  color: #ffffff;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  transition: color 0.3s ease;
+}
+
+.timer-value.timer-warning {
+  color: #fbbf24;
+}
+
+.timer-value.timer-critical {
+  color: #ef4444;
+  animation: pulse-critical 1s ease-in-out infinite;
+}
+
+@keyframes pulse-critical {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* ============================================================
+   Round Summary Overlay Styles (STORY-001)
+   ============================================================ */
+
+.round-summary-container {
+  max-width: 700px;
+  padding: 3rem 2.5rem;
+  background: rgba(20, 20, 25, 0.95);
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+}
+
+.round-summary-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 2.5rem 0;
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.round-summary-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.summary-section {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.summary-section h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.01em;
+}
+
+.summary-section p {
+  font-size: 0.9375rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.summary-section span {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.continue-button {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  letter-spacing: -0.01em;
+}
+
+.continue-button:hover {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+.continue-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+}
+
+.continue-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design for Timer and Summary */
+@media (max-width: 768px) {
+  .timer-hud {
+    top: 10px;
+    right: 10px;
+  }
+
+  .timer-container {
+    padding: 0.75rem 1rem;
+    min-width: 200px;
+  }
+
+  .timer-value {
+    font-size: 1.5rem;
+  }
+
+  .round-summary-container {
+    padding: 2rem 1.5rem;
+    max-width: 90vw;
+  }
+
+  .round-summary-title {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .round-summary-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .summary-section {
+    padding: 1rem;
+  }
+
+  .continue-button {
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
 /* Accessibility: Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   .role-button {
@@ -157,6 +378,18 @@
   }
 
   .role-button:active {
+    transform: none;
+  }
+
+  .timer-value.timer-critical {
+    animation: none;
+  }
+
+  .continue-button:hover {
+    transform: none;
+  }
+
+  .continue-button:active {
     transform: none;
   }
 }

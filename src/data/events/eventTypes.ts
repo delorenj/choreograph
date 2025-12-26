@@ -16,11 +16,12 @@
  * 14 core events covering rounds, tasks, stress, rapport, empathy, employment, role selection, and game state
  */
 export type GameEventType =
-  // Round Events (4)
+  // Round Events (5)
   | 'round:start'
   | 'round:end'
   | 'round:tick'
   | 'round:paycheck'
+  | 'summary:dismissed'
   // Task Events (4)
   | 'task:spawned'
   | 'task:progress'
@@ -92,6 +93,7 @@ export interface GameEventPayload {
     amount: number;
     balance: number;
   };
+  'summary:dismissed': Record<string, never>; // Empty payload
 
   // Task Events
   'task:spawned': {

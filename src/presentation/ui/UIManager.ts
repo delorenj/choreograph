@@ -27,6 +27,8 @@ export class UIManager {
 
   // UI Elements
   private roleSelectionOverlay: HTMLElement | null = null;
+  private timerDisplay: HTMLElement | null = null;
+  private roundSummaryOverlay: HTMLElement | null = null;
 
   constructor(
     eventBus: EventBus,
@@ -48,6 +50,8 @@ export class UIManager {
    */
   private initializeUI(): void {
     this.createRoleSelectionOverlay();
+    this.createTimerDisplay();
+    this.createRoundSummaryOverlay();
   }
 
   /**
@@ -57,6 +61,23 @@ export class UIManager {
     // Listen for state changes to show/hide UI
     this.eventBus.on('game:stateChanged', ({ newState }) => {
       this.updateUI(newState);
+    });
+
+    // Listen for timer ticks to update display
+    this.eventBus.on('round:tick', ({ remainingTime, elapsedTime }) => {
+      this.updateTimerDisplay(remainingTime);
+    });
+
+    // Listen for round start to show timer
+    this.eventBus.on('round:start', ({ roundNumber, isPaycheckRound }) => {
+      this.showTimerDisplay();
+      this.updateRoundInfo(roundNumber, isPaycheckRound);
+    });
+
+    // Listen for round end to show summary
+    this.eventBus.on('round:end', ({ roundNumber, summary }) => {
+      this.hideTimerDisplay();
+      this.showRoundSummary(summary);
     });
   }
 
@@ -153,6 +174,94 @@ export class UIManager {
   }
 
   /**
+   * Create the timer display HUD
+   */
+  private createTimerDisplay(): void {
+    const timerHUD = document.createElement('div');
+    timerHUD.id = 'timer-hud';
+    timerHUD.className = 'timer-hud';
+    timerHUD.style.display = 'none'; // Hidden until round starts
+
+    timerHUD.innerHTML = `
+      <div class="timer-container">
+        <div class="timer-header">
+          <span class="round-label">Round <span id="round-number">1</span></span>
+          <span class="paycheck-indicator" id="paycheck-indicator" style="display: none;">💵 Paycheck Round</span>
+        </div>
+        <div class="timer-display">
+          <span class="timer-label">Time Remaining:</span>
+          <span class="timer-value" id="timer-value">2:00</span>
+        </div>
+      </div>
+    `;
+
+    this.rootElement.appendChild(timerHUD);
+    this.timerDisplay = timerHUD;
+  }
+
+  /**
+   * Update timer display with remaining time
+   */
+  private updateTimerDisplay(remainingSeconds: number): void {
+    if (!this.timerDisplay) return;
+
+    const timerValue = this.timerDisplay.querySelector('#timer-value');
+    if (!timerValue) return;
+
+    // Format as MM:SS
+    const minutes = Math.floor(remainingSeconds / 60);
+    const seconds = remainingSeconds % 60;
+    timerValue.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+    // Add warning class when time is running low
+    if (remainingSeconds <= 30 && remainingSeconds > 10) {
+      timerValue.classList.add('timer-warning');
+      timerValue.classList.remove('timer-critical');
+    } else if (remainingSeconds <= 10) {
+      timerValue.classList.add('timer-critical');
+      timerValue.classList.remove('timer-warning');
+    } else {
+      timerValue.classList.remove('timer-warning', 'timer-critical');
+    }
+  }
+
+  /**
+   * Update round info display
+   */
+  private updateRoundInfo(roundNumber: number, isPaycheckRound: boolean): void {
+    if (!this.timerDisplay) return;
+
+    const roundNumberSpan = this.timerDisplay.querySelector('#round-number');
+    const paycheckIndicator = this.timerDisplay.querySelector('#paycheck-indicator') as HTMLElement | null;
+
+    if (roundNumberSpan) {
+      roundNumberSpan.textContent = roundNumber.toString();
+    }
+
+    if (paycheckIndicator) {
+      paycheckIndicator.style.display = isPaycheckRound ? 'inline' : 'none';
+    }
+  }
+
+  /**
+   * Show timer display
+   */
+  private showTimerDisplay(): void {
+    if (this.timerDisplay) {
+      this.timerDisplay.style.display = 'block';
+    }
+  }
+
+  /**
+   * Hide timer display
+   */
+  private hideTimerDisplay(): void {
+    if (this.timerDisplay) {
+      this.timerDisplay.style.display = 'none';
+    }
+  }
+
+  /**
    * Show role selection overlay
    */
   private showRoleSelection(): void {
@@ -178,6 +287,135 @@ export class UIManager {
   }
 
   /**
+   * Create the round summary overlay
+   */
+  private createRoundSummaryOverlay(): void {
+    const overlay = document.createElement('div');
+    overlay.id = 'round-summary-overlay';
+    overlay.className = 'ui-overlay';
+    overlay.style.display = 'none'; // Hidden by default
+
+    overlay.innerHTML = `
+      <div class="round-summary-container">
+        <h2 class="round-summary-title">Round <span id="summary-round-number">1</span> Complete</h2>
+        <div class="round-summary-content">
+          <div class="summary-section">
+            <h3>Blue Ball (Employment)</h3>
+            <p>Tasks Completed: <span id="blue-tasks-completed">0</span> / <span id="blue-tasks-total">0</span></p>
+            <p>Stress Change: <span id="blue-stress-change">0</span></p>
+          </div>
+          <div class="summary-section">
+            <h3>Red Ball (Household)</h3>
+            <p>Tasks Completed: <span id="red-tasks-completed">0</span> / <span id="red-tasks-total">0</span></p>
+            <p>Stress Change: <span id="red-stress-change">0</span></p>
+          </div>
+          <div class="summary-section">
+            <h3>Relationship</h3>
+            <p>Rapport Change: <span id="rapport-change">0</span></p>
+          </div>
+          <div class="summary-section">
+            <h3>Finances</h3>
+            <p>Income Received: $<span id="income-received">0</span></p>
+            <p>Current Balance: $<span id="running-balance">0</span></p>
+          </div>
+        </div>
+        <button
+          id="continue-to-next-round"
+          class="continue-button"
+          aria-label="Continue to next round">
+          Continue to Next Round
+        </button>
+      </div>
+    `;
+
+    this.rootElement.appendChild(overlay);
+    this.roundSummaryOverlay = overlay;
+
+    // Attach event listener
+    const continueButton = overlay.querySelector('#continue-to-next-round');
+    if (continueButton) {
+      continueButton.addEventListener('click', () => this.dismissRoundSummary());
+    }
+  }
+
+  /**
+   * Show round summary with data
+   */
+  private showRoundSummary(summary: any): void {
+    if (!this.roundSummaryOverlay) return;
+
+    // Update summary data
+    const elements = {
+      summaryRoundNumber: this.roundSummaryOverlay.querySelector('#summary-round-number'),
+      blueTasksCompleted: this.roundSummaryOverlay.querySelector('#blue-tasks-completed'),
+      blueTasksTotal: this.roundSummaryOverlay.querySelector('#blue-tasks-total'),
+      redTasksCompleted: this.roundSummaryOverlay.querySelector('#red-tasks-completed'),
+      redTasksTotal: this.roundSummaryOverlay.querySelector('#red-tasks-total'),
+      blueStressChange: this.roundSummaryOverlay.querySelector('#blue-stress-change'),
+      redStressChange: this.roundSummaryOverlay.querySelector('#red-stress-change'),
+      rapportChange: this.roundSummaryOverlay.querySelector('#rapport-change'),
+      incomeReceived: this.roundSummaryOverlay.querySelector('#income-received'),
+      runningBalance: this.roundSummaryOverlay.querySelector('#running-balance'),
+    };
+
+    if (elements.summaryRoundNumber) {
+      elements.summaryRoundNumber.textContent = summary.roundNumber.toString();
+    }
+    if (elements.blueTasksCompleted) {
+      elements.blueTasksCompleted.textContent = summary.blueTasksCompleted.toString();
+    }
+    if (elements.blueTasksTotal) {
+      elements.blueTasksTotal.textContent = summary.blueTasksTotal.toString();
+    }
+    if (elements.redTasksCompleted) {
+      elements.redTasksCompleted.textContent = summary.redTasksCompleted.toString();
+    }
+    if (elements.redTasksTotal) {
+      elements.redTasksTotal.textContent = summary.redTasksTotal.toString();
+    }
+    if (elements.blueStressChange) {
+      const change = summary.blueStressChange;
+      elements.blueStressChange.textContent = change >= 0 ? `+${change}` : change.toString();
+    }
+    if (elements.redStressChange) {
+      const change = summary.redStressChange;
+      elements.redStressChange.textContent = change >= 0 ? `+${change}` : change.toString();
+    }
+    if (elements.rapportChange) {
+      const change = summary.rapportChange;
+      elements.rapportChange.textContent = change >= 0 ? `+${change}` : change.toString();
+    }
+    if (elements.incomeReceived) {
+      elements.incomeReceived.textContent = summary.incomeReceived.toString();
+    }
+    if (elements.runningBalance) {
+      elements.runningBalance.textContent = summary.runningBalance.toString();
+    }
+
+    // Show the overlay
+    this.roundSummaryOverlay.style.display = 'flex';
+  }
+
+  /**
+   * Hide round summary
+   */
+  private hideRoundSummary(): void {
+    if (this.roundSummaryOverlay) {
+      this.roundSummaryOverlay.style.display = 'none';
+    }
+  }
+
+  /**
+   * Dismiss round summary and continue to next round
+   */
+  private dismissRoundSummary(): void {
+    this.hideRoundSummary();
+
+    // Emit event to signal summary dismissed
+    this.eventBus.emit('summary:dismissed', {});
+  }
+
+  /**
    * Destroy UI manager and clean up
    */
   public destroy(): void {
@@ -185,6 +423,14 @@ export class UIManager {
     if (this.roleSelectionOverlay) {
       this.roleSelectionOverlay.remove();
       this.roleSelectionOverlay = null;
+    }
+    if (this.timerDisplay) {
+      this.timerDisplay.remove();
+      this.timerDisplay = null;
+    }
+    if (this.roundSummaryOverlay) {
+      this.roundSummaryOverlay.remove();
+      this.roundSummaryOverlay = null;
     }
   }
 }

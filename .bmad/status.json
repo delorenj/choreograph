@@ -1,0 +1,11 @@
+{
+  "project_name": "choreograph",
+  "current_phase": "implementation",
+  "workflows_completed": {
+    "prd": "/home/delorenj/code/Choreography/docs/prd-choreograph-2025-12-22.md",
+    "architecture": "/home/delorenj/code/Choreography/docs/architecture-choreograph-2025-12-25.md",
+    "sprint-planning": "/home/delorenj/code/Choreography/docs/sprint-plan-choreograph-2025-12-25.md"
+  },
+  "next_recommended": "dev-story",
+  "last_updated": "2025-12-25"
+}

@@ -297,7 +297,10 @@ export class UIManager {
 
     overlay.innerHTML = `
       <div class="round-summary-container">
-        <h2 class="round-summary-title">Round <span id="summary-round-number">1</span> Complete</h2>
+        <h2 class="round-summary-title">
+          Round <span id="summary-round-number">1</span> Complete
+          <span class="paycheck-badge" id="summary-paycheck-badge" style="display: none;">💵 Paycheck!</span>
+        </h2>
         <div class="round-summary-content">
           <div class="summary-section">
             <h3>Blue Ball (Employment)</h3>
@@ -315,7 +318,10 @@ export class UIManager {
           </div>
           <div class="summary-section">
             <h3>Finances</h3>
-            <p>Income Received: $<span id="income-received">0</span></p>
+            <p id="income-line">
+              <span id="income-label">Income Received:</span>
+              $<span id="income-received">0</span>
+            </p>
             <p>Current Balance: $<span id="running-balance">0</span></p>
           </div>
         </div>
@@ -344,9 +350,13 @@ export class UIManager {
   private showRoundSummary(summary: any): void {
     if (!this.roundSummaryOverlay) return;
 
+    // Determine if this is a paycheck round (income > 0)
+    const isPaycheckRound = summary.incomeReceived > 0;
+
     // Update summary data
     const elements = {
       summaryRoundNumber: this.roundSummaryOverlay.querySelector('#summary-round-number'),
+      paycheckBadge: this.roundSummaryOverlay.querySelector('#summary-paycheck-badge') as HTMLElement,
       blueTasksCompleted: this.roundSummaryOverlay.querySelector('#blue-tasks-completed'),
       blueTasksTotal: this.roundSummaryOverlay.querySelector('#blue-tasks-total'),
       redTasksCompleted: this.roundSummaryOverlay.querySelector('#red-tasks-completed'),
@@ -354,6 +364,8 @@ export class UIManager {
       blueStressChange: this.roundSummaryOverlay.querySelector('#blue-stress-change'),
       redStressChange: this.roundSummaryOverlay.querySelector('#red-stress-change'),
       rapportChange: this.roundSummaryOverlay.querySelector('#rapport-change'),
+      incomeLabel: this.roundSummaryOverlay.querySelector('#income-label'),
+      incomeLine: this.roundSummaryOverlay.querySelector('#income-line') as HTMLElement,
       incomeReceived: this.roundSummaryOverlay.querySelector('#income-received'),
       runningBalance: this.roundSummaryOverlay.querySelector('#running-balance'),
     };
@@ -361,6 +373,21 @@ export class UIManager {
     if (elements.summaryRoundNumber) {
       elements.summaryRoundNumber.textContent = summary.roundNumber.toString();
     }
+
+    // Show/hide paycheck badge
+    if (elements.paycheckBadge) {
+      elements.paycheckBadge.style.display = isPaycheckRound ? 'inline' : 'none';
+    }
+
+    // Update income line visibility and label
+    if (elements.incomeLine) {
+      // Only show income line on paycheck rounds
+      elements.incomeLine.style.display = isPaycheckRound ? 'block' : 'none';
+    }
+    if (elements.incomeLabel) {
+      elements.incomeLabel.textContent = isPaycheckRound ? 'Paycheck Received:' : 'Income Received:';
+    }
+
     if (elements.blueTasksCompleted) {
       elements.blueTasksCompleted.textContent = summary.blueTasksCompleted.toString();
     }

@@ -123,12 +123,20 @@ export interface RoundSummary {
 // FINANCIAL ENTITIES
 // =============================================================================
 
+/**
+ * Financial State
+ *
+ * Tracks household finances including balance, income, and expenses.
+ */
 export interface FinancialState {
+  /** Current household balance */
   balance: number;
-  totalEarned: number;
-  bluePaycheck: number; // $6,250 every 2 rounds
-  redIncome: number; // $400/round after employment event
-  expenses: number; // Hidden, causes deficit
+  /** Last paycheck amount received (0 if no paycheck this round) */
+  lastPaycheckAmount: number;
+  /** Total income earned across all rounds */
+  totalIncome: number;
+  /** Total expenses incurred (hidden mechanic) */
+  totalExpenses: number;
 }
 
 // =============================================================================

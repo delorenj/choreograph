@@ -9,12 +9,14 @@ import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
 import { RoundManager, RoundManagerConfig } from '../RoundManager';
 import { EventBus } from '../../../../data/events/eventBus';
 import { GameStateMachine } from '../../stateMachine/GameStateMachine';
+import { FinancialManager, FinancialManagerConfig } from '../../financialManager';
 import { RoundSummary } from '../../../../data/entities';
 
 describe('RoundManager', () => {
   let roundManager: RoundManager;
   let eventBus: EventBus;
   let stateMachine: GameStateMachine;
+  let financialManager: FinancialManager;
   let emitSpy: ReturnType<typeof vi.fn>;
   let config: RoundManagerConfig;
 
@@ -26,13 +28,21 @@ describe('RoundManager', () => {
     stateMachine = new GameStateMachine(eventBus, 'PLAYING');
     emitSpy = vi.spyOn(eventBus, 'emit');
 
+    // Create FinancialManager
+    const financialConfig: FinancialManagerConfig = {
+      startingBalance: 10000,
+      bluePaycheck: 6250,
+      redIncome: 0,
+    };
+    financialManager = new FinancialManager(eventBus, financialConfig);
+
     config = {
       durationSeconds: 120,
       paycheckInterval: 2,
       paycheckAmount: 6250,
     };
 
-    roundManager = new RoundManager(eventBus, stateMachine, config);
+    roundManager = new RoundManager(eventBus, stateMachine, config, financialManager);
   });
 
   afterEach(() => {
@@ -388,12 +398,14 @@ describe('RoundManager', () => {
       const customConfig: RoundManagerConfig = {
         durationSeconds: 60,
         paycheckInterval: 2,
+        paycheckAmount: 6250,
       };
 
       const customManager = new RoundManager(
         eventBus,
         stateMachine,
-        customConfig
+        customConfig,
+        financialManager
       );
 
       customManager.startRound();
@@ -409,12 +421,14 @@ describe('RoundManager', () => {
       const customConfig: RoundManagerConfig = {
         durationSeconds: 120,
         paycheckInterval: 3, // Every 3 rounds
+        paycheckAmount: 6250,
       };
 
       const customManager = new RoundManager(
         eventBus,
         stateMachine,
-        customConfig
+        customConfig,
+        financialManager
       );
 
       expect(customManager.isPaycheckRound()).toBe(false); // Round 1

@@ -12,6 +12,7 @@ import { EventBus } from '../../../data/events/eventBus';
 import { Round, RoundPhase, RoundSummary } from '../../../data/entities';
 import { GameEvent } from '../stateMachine/types';
 import { GameStateMachine } from '../stateMachine/GameStateMachine';
+import { FinancialManager } from '../financialManager';
 
 export interface RoundManagerConfig {
   durationSeconds: number;
@@ -26,6 +27,7 @@ export class RoundManager {
   private readonly eventBus: EventBus;
   private readonly stateMachine: GameStateMachine;
   private readonly config: RoundManagerConfig;
+  private readonly financialManager: FinancialManager;
 
   private currentRound: Round;
   private timerId: number | null = null;
@@ -38,11 +40,13 @@ export class RoundManager {
   constructor(
     eventBus: EventBus,
     stateMachine: GameStateMachine,
-    config: RoundManagerConfig
+    config: RoundManagerConfig,
+    financialManager: FinancialManager
   ) {
     this.eventBus = eventBus;
     this.stateMachine = stateMachine;
     this.config = config;
+    this.financialManager = financialManager;
 
     // Initialize with first round
     this.currentRound = this.createRound(1);
@@ -301,6 +305,18 @@ export class RoundManager {
   private handleTimeExpired(): void {
     this.stopTimer();
 
+    // Process financial updates for the round
+    // Note: isRedEmployed will be properly tracked in future stories
+    const isRedEmployed = false; // Placeholder - will be integrated with game state
+    this.financialManager.processRoundEnd(
+      this.currentRound.number,
+      isRedEmployed,
+      this.config.paycheckInterval
+    );
+
+    // Get financial state for summary
+    const financialState = this.financialManager.getState();
+
     // Will be replaced with actual summary calculation in future stories
     const summary: RoundSummary = {
       roundNumber: this.currentRound.number,
@@ -311,8 +327,8 @@ export class RoundManager {
       blueStressChange: 0,
       redStressChange: 0,
       rapportChange: 0,
-      incomeReceived: this.currentRound.isPaycheckRound ? this.config.paycheckAmount : 0,
-      runningBalance: 0,
+      incomeReceived: financialState.lastPaycheckAmount,
+      runningBalance: financialState.balance,
     };
 
     this.endRound(summary);

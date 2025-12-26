@@ -13,9 +13,11 @@ import { EventBus } from './data/events/eventBus';
 import { EntityStore } from './data/state/entityStore';
 import { GameStateMachine } from './systems/core/stateMachine/GameStateMachine';
 import { RoundManager } from './systems/core/roundManager';
+import { FinancialManager } from './systems/core/financialManager';
 import { UIManager } from './presentation/ui';
 import type { GameState } from './data/state/gameState';
 import type { RoundManagerConfig } from './systems/core/roundManager';
+import type { FinancialManagerConfig } from './systems/core/financialManager';
 
 /**
  * Initialize the PlayCanvas application
@@ -107,6 +109,7 @@ async function initializeGameSystems(): Promise<{
   eventBus: EventBus;
   stateMachine: GameStateMachine;
   entityStore: EntityStore;
+  financialManager: FinancialManager;
   roundManager: RoundManager;
   uiManager: UIManager;
 }> {
@@ -171,12 +174,26 @@ async function initializeGameSystems(): Promise<{
   const entityStore = new EntityStore(initialState);
 
   // Initialize Systems layer
+  // Create FinancialManager
+  const financialConfig: FinancialManagerConfig = {
+    startingBalance: config.financial.startingBalance,
+    bluePaycheck: config.blue.paycheck,
+    redIncome: 0, // Will be configured in future stories (employment event)
+  };
+  const financialManager = new FinancialManager(eventBus, financialConfig);
+
+  // Create RoundManager
   const roundConfig: RoundManagerConfig = {
     durationSeconds: config.round.durationSeconds,
     paycheckInterval: config.round.paycheckInterval,
     paycheckAmount: config.blue.paycheck,
   };
-  const roundManager = new RoundManager(eventBus, stateMachine, roundConfig);
+  const roundManager = new RoundManager(
+    eventBus,
+    stateMachine,
+    roundConfig,
+    financialManager
+  );
 
   // Initialize Presentation layer (UI)
   const uiManager = new UIManager(eventBus, stateMachine, entityStore);
@@ -199,6 +216,7 @@ async function initializeGameSystems(): Promise<{
     eventBus,
     stateMachine,
     entityStore,
+    financialManager,
     roundManager,
     uiManager,
   };

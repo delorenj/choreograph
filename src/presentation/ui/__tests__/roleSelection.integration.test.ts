@@ -99,9 +99,7 @@ describe('Role Selection Integration', () => {
       expect(entityStore.getState().redBall.isAI).toBe(true);
 
       // Step 2: UI overlay should be hidden initially
-      const overlay = rootElement.querySelector(
-        '#role-selection-overlay'
-      ) as HTMLElement;
+      const overlay = rootElement.querySelector('#role-selection-overlay') as HTMLElement;
       expect(overlay.style.display).toBe('none');
 
       // Step 3: Transition to ROLE_SELECT
@@ -113,9 +111,7 @@ describe('Role Selection Integration', () => {
       expect(overlay.style.display).toBe('flex');
 
       // Step 5: Click blue ball button
-      const blueButton = rootElement.querySelector(
-        '#select-blue-ball'
-      ) as HTMLButtonElement;
+      const blueButton = rootElement.querySelector('#select-blue-ball') as HTMLButtonElement;
       blueButton.click();
 
       // Step 6: Verify complete state after selection
@@ -138,9 +134,7 @@ describe('Role Selection Integration', () => {
       expect(entityStore.getState().redBall.isAI).toBe(true);
 
       // Step 2: UI overlay should be hidden initially
-      const overlay = rootElement.querySelector(
-        '#role-selection-overlay'
-      ) as HTMLElement;
+      const overlay = rootElement.querySelector('#role-selection-overlay') as HTMLElement;
       expect(overlay.style.display).toBe('none');
 
       // Step 3: Transition to ROLE_SELECT
@@ -152,9 +146,7 @@ describe('Role Selection Integration', () => {
       expect(overlay.style.display).toBe('flex');
 
       // Step 5: Click red ball button
-      const redButton = rootElement.querySelector(
-        '#select-red-ball'
-      ) as HTMLButtonElement;
+      const redButton = rootElement.querySelector('#select-red-ball') as HTMLButtonElement;
       redButton.click();
 
       // Step 6: Verify complete state after selection
@@ -181,9 +173,7 @@ describe('Role Selection Integration', () => {
       stateMachine.startGame();
       stateMachine.selectScenario();
 
-      const blueButton = rootElement.querySelector(
-        '#select-blue-ball'
-      ) as HTMLButtonElement;
+      const blueButton = rootElement.querySelector('#select-blue-ball') as HTMLButtonElement;
       blueButton.click();
 
       // Verify role:selected event was emitted
@@ -205,9 +195,7 @@ describe('Role Selection Integration', () => {
       stateMachine.startGame();
       stateMachine.selectScenario();
 
-      const blueButton = rootElement.querySelector(
-        '#select-blue-ball'
-      ) as HTMLButtonElement;
+      const blueButton = rootElement.querySelector('#select-blue-ball') as HTMLButtonElement;
       blueButton.click();
 
       // Verify state transitions
@@ -225,9 +213,7 @@ describe('Role Selection Integration', () => {
       stateMachine.startGame();
       stateMachine.selectScenario();
 
-      const blueButton = rootElement.querySelector(
-        '#select-blue-ball'
-      ) as HTMLButtonElement;
+      const blueButton = rootElement.querySelector('#select-blue-ball') as HTMLButtonElement;
       blueButton.click();
 
       expect(entityStore.getState().playerRole).toBe('blue');
@@ -237,15 +223,11 @@ describe('Role Selection Integration', () => {
       // Simulate restart by showing role selection again
       uiManager.showRoleSelectionScreen();
 
-      const overlay = rootElement.querySelector(
-        '#role-selection-overlay'
-      ) as HTMLElement;
+      const overlay = rootElement.querySelector('#role-selection-overlay') as HTMLElement;
       expect(overlay.style.display).toBe('flex');
 
       // Second selection: choose red
-      const redButton = rootElement.querySelector(
-        '#select-red-ball'
-      ) as HTMLButtonElement;
+      const redButton = rootElement.querySelector('#select-red-ball') as HTMLButtonElement;
       redButton.click();
 
       // Verify role changed

@@ -1,327 +1,329 @@
-version: "6.0.0"
-project_name: "choreograph"
+version: '6.0.0'
+project_name: 'choreograph'
 project_level: 3
 current_sprint: 1
-sprint_plan_path: "/home/delorenj/code/Choreography/docs/sprint-plan-choreograph-2025-12-25.md"
+sprint_plan_path: '/home/delorenj/code/Choreography/docs/sprint-plan-choreograph-2025-12-25.md'
 
 sprints:
   - sprint_number: 1
-    start_date: "2025-12-25"
-    end_date: "2026-01-08"
+    start_date: '2025-12-25'
+    end_date: '2026-01-08'
     capacity_points: 30
     committed_points: 27
-    completed_points: 0
-    status: "not_started"
-    goal: "Establish core game loop foundation, configuration system, and basic task interaction"
+    completed_points: 21
+    status: 'completed'
+    goal: 'Establish core game loop foundation, configuration system, and basic task interaction'
     stories:
-      - story_id: "STORY-040"
-        title: "Scenario Configuration Schema"
+      - story_id: 'STORY-040'
+        title: 'Scenario Configuration Schema'
         points: 3
-        status: "not_started"
-        assigned_to: null
-      - story_id: "STORY-041"
-        title: "Default Scenario Configuration"
+        status: 'completed'
+        assigned_to: 'Sisyphus'
+      - story_id: 'STORY-041'
+        title: 'Default Scenario Configuration'
         points: 1
-        status: "not_started"
-        assigned_to: null
-      - story_id: "STORY-001"
-        title: "Round Timer System"
+        status: 'completed'
+        assigned_to: 'Sisyphus'
+      - story_id: 'STORY-001'
+        title: 'Round Timer System'
         points: 5
-        status: "not_started"
-        assigned_to: null
-      - story_id: "STORY-002"
-        title: "Role Selection Screen"
+        status: 'completed'
+        assigned_to: 'Sisyphus'
+      - story_id: 'STORY-002'
+        title: 'Role Selection Screen'
         points: 3
-        status: "not_started"
-        assigned_to: null
-      - story_id: "STORY-004"
-        title: "Paycheck Cycle Integration"
+        status: 'completed'
+        assigned_to: 'Sisyphus'
+      - story_id: 'STORY-004'
+        title: 'Paycheck Cycle Integration'
         points: 2
-        status: "not_started"
-        assigned_to: null
-      - story_id: "STORY-017"
-        title: "Button-Hold Task Completion"
+        status: 'completed'
+        assigned_to: 'Sisyphus'
+      - story_id: 'STORY-017'
+        title: 'Button-Hold Task Completion'
         points: 5
-        status: "not_started"
+        status: 'blocked'
         assigned_to: null
-      - story_id: "STORY-019"
-        title: "Physics-Based Ball Movement"
+        notes: 'Deferred to Sprint 2 - depends on STORY-007 (Blue Work Spawning)'
+      - story_id: 'STORY-019'
+        title: 'Physics-Based Ball Movement'
         points: 3
-        status: "not_started"
-        assigned_to: null
-      - story_id: "STORY-020"
-        title: "Task Gravity Mechanic"
+        status: 'completed'
+        assigned_to: 'Sisyphus'
+      - story_id: 'STORY-020'
+        title: 'Task Gravity Mechanic'
         points: 3
-        status: "not_started"
+        status: 'blocked'
         assigned_to: null
-      - story_id: "STORY-033"
-        title: "Fixed Isometric Camera"
+        notes: 'Deferred to Sprint 2 - depends on STORY-017 and task systems'
+      - story_id: 'STORY-033'
+        title: 'Fixed Isometric Camera'
         points: 2
-        status: "not_started"
-        assigned_to: null
+        status: 'completed'
+        assigned_to: 'Sisyphus'
 
   - sprint_number: 2
-    start_date: "2026-01-08"
-    end_date: "2026-01-22"
+    start_date: '2026-01-08'
+    end_date: '2026-01-22'
     capacity_points: 30
     committed_points: 26
     completed_points: 0
-    status: "not_started"
-    goal: "Complete task interaction feedback and implement work spawning for both balls"
+    status: 'not_started'
+    goal: 'Complete task interaction feedback and implement work spawning for both balls'
     stories:
-      - story_id: "STORY-018"
-        title: "Task Completion Audio Feedback"
+      - story_id: 'STORY-018'
+        title: 'Task Completion Audio Feedback'
         points: 3
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-021"
-        title: "Task Completion Visual Feedback"
+      - story_id: 'STORY-021'
+        title: 'Task Completion Visual Feedback'
         points: 3
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-006"
-        title: "Blue Work Tube and Spawning"
+      - story_id: 'STORY-006'
+        title: 'Blue Work Tube and Spawning'
         points: 5
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-007"
-        title: "Work Chunk Decomposition"
+      - story_id: 'STORY-007'
+        title: 'Work Chunk Decomposition'
         points: 5
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-008"
-        title: "Scope Creep Mechanic"
+      - story_id: 'STORY-008'
+        title: 'Scope Creep Mechanic'
         points: 3
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-013"
-        title: "Red Task Spawning System"
+      - story_id: 'STORY-013'
+        title: 'Red Task Spawning System'
         points: 5
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-014"
-        title: "Red Task Type Configuration"
+      - story_id: 'STORY-014'
+        title: 'Red Task Type Configuration'
         points: 2
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
 
   - sprint_number: 3
-    start_date: "2026-01-22"
-    end_date: "2026-02-05"
+    start_date: '2026-01-22'
+    end_date: '2026-02-05'
     capacity_points: 30
     committed_points: 26
     completed_points: 0
-    status: "not_started"
-    goal: "Complete Blue employment mechanics and financial tracking"
+    status: 'not_started'
+    goal: 'Complete Blue employment mechanics and financial tracking'
     stories:
-      - story_id: "STORY-009"
-        title: "Employment Rapport System"
+      - story_id: 'STORY-009'
+        title: 'Employment Rapport System'
         points: 5
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-010"
-        title: "Firing Event"
+      - story_id: 'STORY-010'
+        title: 'Firing Event'
         points: 3
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-011"
-        title: "Paycheck Income System"
+      - story_id: 'STORY-011'
+        title: 'Paycheck Income System'
         points: 5
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-012"
-        title: "Context Switching Penalty"
+      - story_id: 'STORY-012'
+        title: 'Context Switching Penalty'
         points: 5
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-015"
-        title: "Red Task Refusal Mechanic"
+      - story_id: 'STORY-015'
+        title: 'Red Task Refusal Mechanic'
         points: 3
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-016"
-        title: "Red Sleep Mechanic"
+      - story_id: 'STORY-016'
+        title: 'Red Sleep Mechanic'
         points: 2
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-042"
-        title: "Configuration Modularity"
+      - story_id: 'STORY-042'
+        title: 'Configuration Modularity'
         points: 3
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
 
   - sprint_number: 4
-    start_date: "2026-02-05"
-    end_date: "2026-02-19"
+    start_date: '2026-02-05'
+    end_date: '2026-02-19'
     capacity_points: 30
     committed_points: 26
     completed_points: 0
-    status: "not_started"
-    goal: "Implement asymmetric stress mechanics for both balls"
+    status: 'not_started'
+    goal: 'Implement asymmetric stress mechanics for both balls'
     stories:
-      - story_id: "STORY-022"
-        title: "Blue Stress Meter"
+      - story_id: 'STORY-022'
+        title: 'Blue Stress Meter'
         points: 5
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-023"
-        title: "Blue Cannot Request Help"
+      - story_id: 'STORY-023'
+        title: 'Blue Cannot Request Help'
         points: 1
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-024"
-        title: "Blue Weeping Animation"
+      - story_id: 'STORY-024'
+        title: 'Blue Weeping Animation'
         points: 2
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-025"
-        title: "Blue Stress Overflow Debuffs"
+      - story_id: 'STORY-025'
+        title: 'Blue Stress Overflow Debuffs'
         points: 3
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-026"
-        title: "Red Stress Meter"
+      - story_id: 'STORY-026'
+        title: 'Red Stress Meter'
         points: 3
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-027"
-        title: "Red Help Request System"
+      - story_id: 'STORY-027'
+        title: 'Red Help Request System'
         points: 5
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-028"
-        title: "Red Stress Debuffs to Blue"
+      - story_id: 'STORY-028'
+        title: 'Red Stress Debuffs to Blue'
         points: 5
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-034"
-        title: "Camera Panning"
+      - story_id: 'STORY-034'
+        title: 'Camera Panning'
         points: 3
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
 
   - sprint_number: 5
-    start_date: "2026-02-19"
-    end_date: "2026-03-05"
+    start_date: '2026-02-19'
+    end_date: '2026-03-05'
     capacity_points: 30
     committed_points: 23
     completed_points: 0
-    status: "not_started"
-    goal: "Complete AI opponent system and empathy mechanics"
+    status: 'not_started'
+    goal: 'Complete AI opponent system and empathy mechanics'
     stories:
-      - story_id: "STORY-003"
-        title: "AI Opponent System"
+      - story_id: 'STORY-003'
+        title: 'AI Opponent System'
         points: 8
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-029"
-        title: "Empathy Action Modals"
+      - story_id: 'STORY-029'
+        title: 'Empathy Action Modals'
         points: 8
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-005"
-        title: "End-of-Round Summary Screen"
+      - story_id: 'STORY-005'
+        title: 'End-of-Round Summary Screen'
         points: 5
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-044"
-        title: "First Task Tutorial"
+      - story_id: 'STORY-044'
+        title: 'First Task Tutorial'
         points: 2
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-045"
-        title: "First Help Request Tutorial"
+      - story_id: 'STORY-045'
+        title: 'First Help Request Tutorial'
         points: 2
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
 
   - sprint_number: 6
-    start_date: "2026-03-05"
-    end_date: "2026-03-19"
+    start_date: '2026-03-05'
+    end_date: '2026-03-19'
     capacity_points: 30
     committed_points: 23
     completed_points: 0
-    status: "not_started"
+    status: 'not_started'
     goal: "Implement Red's job event and complete audio systems"
     stories:
-      - story_id: "STORY-030"
-        title: "Red Employment Event Trigger"
+      - story_id: 'STORY-030'
+        title: 'Red Employment Event Trigger'
         points: 3
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-031"
-        title: "Red Part-Time Income"
+      - story_id: 'STORY-031'
+        title: 'Red Part-Time Income'
         points: 2
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-032"
-        title: "Blue Work Time Reduction"
+      - story_id: 'STORY-032'
+        title: 'Blue Work Time Reduction'
         points: 5
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-035"
-        title: "Audio Feedback System"
+      - story_id: 'STORY-035'
+        title: 'Audio Feedback System'
         points: 5
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-036"
-        title: "Adaptive Background Music"
+      - story_id: 'STORY-036'
+        title: 'Adaptive Background Music'
         points: 8
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
 
   - sprint_number: 7
-    start_date: "2026-03-19"
-    end_date: "2026-04-02"
+    start_date: '2026-03-19'
+    end_date: '2026-04-02'
     capacity_points: 30
     committed_points: 26
     completed_points: 0
-    status: "not_started"
-    goal: "Visual polish, tutorial system, and scenario selection"
+    status: 'not_started'
+    goal: 'Visual polish, tutorial system, and scenario selection'
     stories:
-      - story_id: "STORY-043"
-        title: "Tutorial Modal System"
+      - story_id: 'STORY-043'
+        title: 'Tutorial Modal System'
         points: 5
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-037"
-        title: "Task Completion Particles"
+      - story_id: 'STORY-037'
+        title: 'Task Completion Particles'
         points: 3
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-038"
-        title: "Stress-Based Color Grading"
+      - story_id: 'STORY-038'
+        title: 'Stress-Based Color Grading'
         points: 5
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-039"
-        title: "Ball Emissive Glow"
+      - story_id: 'STORY-039'
+        title: 'Ball Emissive Glow'
         points: 2
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-046"
-        title: "Scenario Selection Screen"
+      - story_id: 'STORY-046'
+        title: 'Scenario Selection Screen'
         points: 5
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
-      - story_id: "STORY-047"
-        title: "Config Hot-Reload Dev Mode"
+      - story_id: 'STORY-047'
+        title: 'Config Hot-Reload Dev Mode'
         points: 3
-        status: "not_started"
+        status: 'not_started'
         assigned_to: null
 
 velocity:
-  sprint_1: null  # Will be filled when sprint completes
+  sprint_1: 21 # 7 of 9 stories completed, 2 deferred to Sprint 2
   sprint_2: null
   sprint_3: null
   sprint_4: null
   sprint_5: null
   sprint_6: null
   sprint_7: null
-  rolling_average: null
+  rolling_average: 21
 
 team:
   size: 1
-  experience_level: "senior"
+  experience_level: 'senior'
   sprint_length_weeks: 2
   capacity_per_sprint: 30

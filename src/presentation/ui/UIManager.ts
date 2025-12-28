@@ -157,13 +157,13 @@ export class UIManager {
     // Update player role in entity store
     this.entityStore.setPlayerRole(role);
 
-    // Update ball AI flags based on selection
+    // Update ball player control flags based on selection
     if (role === 'blue') {
-      this.entityStore.updateBlueBall({ isAI: false });
-      this.entityStore.updateRedBall({ isAI: true });
+      this.entityStore.updateBlueBall({ isPlayerControlled: true });
+      this.entityStore.updateRedBall({ isPlayerControlled: false });
     } else {
-      this.entityStore.updateBlueBall({ isAI: true });
-      this.entityStore.updateRedBall({ isAI: false });
+      this.entityStore.updateBlueBall({ isPlayerControlled: false });
+      this.entityStore.updateRedBall({ isPlayerControlled: true });
     }
 
     // Emit role selection event
@@ -232,7 +232,7 @@ export class UIManager {
     if (!this.timerDisplay) return;
 
     const roundNumberSpan = this.timerDisplay.querySelector('#round-number');
-    const paycheckIndicator = this.timerDisplay.querySelector('#paycheck-indicator') as HTMLElement | null;
+    const paycheckIndicator = this.timerDisplay.querySelector('#paycheck-indicator');
 
     if (roundNumberSpan) {
       roundNumberSpan.textContent = roundNumber.toString();
@@ -356,7 +356,9 @@ export class UIManager {
     // Update summary data
     const elements = {
       summaryRoundNumber: this.roundSummaryOverlay.querySelector('#summary-round-number'),
-      paycheckBadge: this.roundSummaryOverlay.querySelector('#summary-paycheck-badge') as HTMLElement,
+      paycheckBadge: this.roundSummaryOverlay.querySelector(
+        '#summary-paycheck-badge'
+      ) as HTMLElement,
       blueTasksCompleted: this.roundSummaryOverlay.querySelector('#blue-tasks-completed'),
       blueTasksTotal: this.roundSummaryOverlay.querySelector('#blue-tasks-total'),
       redTasksCompleted: this.roundSummaryOverlay.querySelector('#red-tasks-completed'),
@@ -385,7 +387,9 @@ export class UIManager {
       elements.incomeLine.style.display = isPaycheckRound ? 'block' : 'none';
     }
     if (elements.incomeLabel) {
-      elements.incomeLabel.textContent = isPaycheckRound ? 'Paycheck Received:' : 'Income Received:';
+      elements.incomeLabel.textContent = isPaycheckRound
+        ? 'Paycheck Received:'
+        : 'Income Received:';
     }
 
     if (elements.blueTasksCompleted) {

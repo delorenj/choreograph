@@ -270,9 +270,7 @@ describe('RoundManager', () => {
       // No more ticks should occur
       vi.advanceTimersByTime(5000);
 
-      const tickCount = emitSpy.mock.calls.filter(
-        (call) => call[0] === 'round:tick'
-      ).length;
+      const tickCount = emitSpy.mock.calls.filter((call) => call[0] === 'round:tick').length;
       expect(tickCount).toBe(0);
     });
 
@@ -506,9 +504,7 @@ describe('RoundManager', () => {
       emitSpy.mockClear();
       vi.advanceTimersByTime(5000);
 
-      const tickCount = emitSpy.mock.calls.filter(
-        (call) => call[0] === 'round:tick'
-      ).length;
+      const tickCount = emitSpy.mock.calls.filter((call) => call[0] === 'round:tick').length;
       expect(tickCount).toBe(0);
     });
 

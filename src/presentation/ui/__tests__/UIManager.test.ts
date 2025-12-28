@@ -97,9 +97,7 @@ describe('UIManager', () => {
     });
 
     it('should hide role selection overlay by default', () => {
-      const overlay = rootElement.querySelector(
-        '#role-selection-overlay'
-      ) as HTMLElement;
+      const overlay = rootElement.querySelector('#role-selection-overlay') as HTMLElement;
       expect(overlay.style.display).toBe('none');
     });
 
@@ -130,9 +128,7 @@ describe('UIManager', () => {
       stateMachine.startGame(); // LOADING -> SCENARIO_SELECT
       stateMachine.selectScenario(); // SCENARIO_SELECT -> ROLE_SELECT
 
-      const overlay = rootElement.querySelector(
-        '#role-selection-overlay'
-      ) as HTMLElement;
+      const overlay = rootElement.querySelector('#role-selection-overlay') as HTMLElement;
       expect(overlay.style.display).toBe('flex');
     });
 
@@ -144,9 +140,7 @@ describe('UIManager', () => {
       // Then transition to PLAYING
       stateMachine.selectRole();
 
-      const overlay = rootElement.querySelector(
-        '#role-selection-overlay'
-      ) as HTMLElement;
+      const overlay = rootElement.querySelector('#role-selection-overlay') as HTMLElement;
       expect(overlay.style.display).toBe('none');
     });
 
@@ -159,18 +153,14 @@ describe('UIManager', () => {
       stateMachine.selectRole();
       stateMachine.pause();
 
-      const overlay = rootElement.querySelector(
-        '#role-selection-overlay'
-      ) as HTMLElement;
+      const overlay = rootElement.querySelector('#role-selection-overlay') as HTMLElement;
       expect(overlay.style.display).toBe('none');
     });
   });
 
   describe('Role Selection - Blue Ball', () => {
     it('should set playerRole to blue when blue button clicked', () => {
-      const blueButton = rootElement.querySelector(
-        '#select-blue-ball'
-      ) as HTMLButtonElement;
+      const blueButton = rootElement.querySelector('#select-blue-ball') as HTMLButtonElement;
 
       blueButton.click();
 
@@ -178,9 +168,7 @@ describe('UIManager', () => {
     });
 
     it('should set blue ball isAI to false when blue selected', () => {
-      const blueButton = rootElement.querySelector(
-        '#select-blue-ball'
-      ) as HTMLButtonElement;
+      const blueButton = rootElement.querySelector('#select-blue-ball') as HTMLButtonElement;
 
       blueButton.click();
 
@@ -188,9 +176,7 @@ describe('UIManager', () => {
     });
 
     it('should set red ball isAI to true when blue selected', () => {
-      const blueButton = rootElement.querySelector(
-        '#select-blue-ball'
-      ) as HTMLButtonElement;
+      const blueButton = rootElement.querySelector('#select-blue-ball') as HTMLButtonElement;
 
       blueButton.click();
 
@@ -201,9 +187,7 @@ describe('UIManager', () => {
       const roleSelectedSpy = vi.fn();
       eventBus.on('role:selected', roleSelectedSpy);
 
-      const blueButton = rootElement.querySelector(
-        '#select-blue-ball'
-      ) as HTMLButtonElement;
+      const blueButton = rootElement.querySelector('#select-blue-ball') as HTMLButtonElement;
       blueButton.click();
 
       expect(roleSelectedSpy).toHaveBeenCalledWith({ role: 'blue' });
@@ -214,9 +198,7 @@ describe('UIManager', () => {
       stateMachine.startGame();
       stateMachine.selectScenario();
 
-      const blueButton = rootElement.querySelector(
-        '#select-blue-ball'
-      ) as HTMLButtonElement;
+      const blueButton = rootElement.querySelector('#select-blue-ball') as HTMLButtonElement;
       blueButton.click();
 
       expect(stateMachine.getState()).toBe('PLAYING');
@@ -225,9 +207,7 @@ describe('UIManager', () => {
 
   describe('Role Selection - Red Ball', () => {
     it('should set playerRole to red when red button clicked', () => {
-      const redButton = rootElement.querySelector(
-        '#select-red-ball'
-      ) as HTMLButtonElement;
+      const redButton = rootElement.querySelector('#select-red-ball') as HTMLButtonElement;
 
       redButton.click();
 
@@ -235,9 +215,7 @@ describe('UIManager', () => {
     });
 
     it('should set red ball isAI to false when red selected', () => {
-      const redButton = rootElement.querySelector(
-        '#select-red-ball'
-      ) as HTMLButtonElement;
+      const redButton = rootElement.querySelector('#select-red-ball') as HTMLButtonElement;
 
       redButton.click();
 
@@ -245,9 +223,7 @@ describe('UIManager', () => {
     });
 
     it('should set blue ball isAI to true when red selected', () => {
-      const redButton = rootElement.querySelector(
-        '#select-red-ball'
-      ) as HTMLButtonElement;
+      const redButton = rootElement.querySelector('#select-red-ball') as HTMLButtonElement;
 
       redButton.click();
 
@@ -258,9 +234,7 @@ describe('UIManager', () => {
       const roleSelectedSpy = vi.fn();
       eventBus.on('role:selected', roleSelectedSpy);
 
-      const redButton = rootElement.querySelector(
-        '#select-red-ball'
-      ) as HTMLButtonElement;
+      const redButton = rootElement.querySelector('#select-red-ball') as HTMLButtonElement;
       redButton.click();
 
       expect(roleSelectedSpy).toHaveBeenCalledWith({ role: 'red' });
@@ -271,9 +245,7 @@ describe('UIManager', () => {
       stateMachine.startGame();
       stateMachine.selectScenario();
 
-      const redButton = rootElement.querySelector(
-        '#select-red-ball'
-      ) as HTMLButtonElement;
+      const redButton = rootElement.querySelector('#select-red-ball') as HTMLButtonElement;
       redButton.click();
 
       expect(stateMachine.getState()).toBe('PLAYING');
@@ -288,17 +260,13 @@ describe('UIManager', () => {
     it('should show role selection when showRoleSelectionScreen called', () => {
       uiManager.showRoleSelectionScreen();
 
-      const overlay = rootElement.querySelector(
-        '#role-selection-overlay'
-      ) as HTMLElement;
+      const overlay = rootElement.querySelector('#role-selection-overlay') as HTMLElement;
       expect(overlay.style.display).toBe('flex');
     });
 
     it('should allow re-selection after restart', () => {
       // First selection
-      const blueButton = rootElement.querySelector(
-        '#select-blue-ball'
-      ) as HTMLButtonElement;
+      const blueButton = rootElement.querySelector('#select-blue-ball') as HTMLButtonElement;
       blueButton.click();
       expect(entityStore.getState().playerRole).toBe('blue');
 
@@ -306,9 +274,7 @@ describe('UIManager', () => {
       uiManager.showRoleSelectionScreen();
 
       // Second selection
-      const redButton = rootElement.querySelector(
-        '#select-red-ball'
-      ) as HTMLButtonElement;
+      const redButton = rootElement.querySelector('#select-red-ball') as HTMLButtonElement;
       redButton.click();
       expect(entityStore.getState().playerRole).toBe('red');
     });
@@ -331,33 +297,25 @@ describe('UIManager', () => {
     });
 
     it('should have blue ball icon', () => {
-      const blueIcon = rootElement.querySelector(
-        '#select-blue-ball .role-button-icon'
-      );
+      const blueIcon = rootElement.querySelector('#select-blue-ball .role-button-icon');
       expect(blueIcon).not.toBeNull();
       expect(blueIcon?.textContent).toBe('🔵');
     });
 
     it('should have red ball icon', () => {
-      const redIcon = rootElement.querySelector(
-        '#select-red-ball .role-button-icon'
-      );
+      const redIcon = rootElement.querySelector('#select-red-ball .role-button-icon');
       expect(redIcon).not.toBeNull();
       expect(redIcon?.textContent).toBe('🔴');
     });
 
     it('should have blue ball subtitle', () => {
-      const blueSubtitle = rootElement.querySelector(
-        '#select-blue-ball .role-button-subtitle'
-      );
+      const blueSubtitle = rootElement.querySelector('#select-blue-ball .role-button-subtitle');
       expect(blueSubtitle).not.toBeNull();
       expect(blueSubtitle?.textContent).toContain('Employment Simulation');
     });
 
     it('should have red ball subtitle', () => {
-      const redSubtitle = rootElement.querySelector(
-        '#select-red-ball .role-button-subtitle'
-      );
+      const redSubtitle = rootElement.querySelector('#select-red-ball .role-button-subtitle');
       expect(redSubtitle).not.toBeNull();
       expect(redSubtitle?.textContent).toContain('Household Simulation');
     });

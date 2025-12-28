@@ -13,7 +13,7 @@
 
 /**
  * Union type of all possible game events
- * 14 core events covering rounds, tasks, stress, rapport, empathy, employment, role selection, and game state
+ * 17 core events covering rounds, tasks, stress, rapport, empathy, employment, finances, role selection, and game state
  */
 export type GameEventType =
   // Round Events (5)
@@ -36,6 +36,10 @@ export type GameEventType =
   | 'empathy:dismissed'
   // Employment Events (1)
   | 'employment:event'
+  // Financial Events (3)
+  | 'financial:paycheckReceived'
+  | 'financial:redIncomeReceived'
+  | 'financial:expenseIncurred'
   // Role Events (1)
   | 'role:selected'
   // Game Events (2)
@@ -47,12 +51,7 @@ export type GameEventType =
 // =============================================================================
 
 // Import entity types from central entity definitions
-import type {
-  RoundSummary,
-  BlueTask,
-  RedTask,
-  EmpathyAction,
-} from '../entities';
+import type { RoundSummary, BlueTask, RedTask, EmpathyAction } from '../entities';
 
 /**
  * Game state phases
@@ -117,11 +116,7 @@ export interface GameEventPayload {
     ball: 'blue' | 'red';
     previousLevel: number; // 0-200 (can overflow)
     newLevel: number;
-    source:
-      | 'INCOMPLETE_TASK'
-      | 'HELPED_RED'
-      | 'RAPPORT_DECAY'
-      | 'SUSTAINED_RED_STRESS';
+    source: 'INCOMPLETE_TASK' | 'HELPED_RED' | 'RAPPORT_DECAY' | 'SUSTAINED_RED_STRESS';
   };
 
   // Rapport Events
@@ -147,6 +142,20 @@ export interface GameEventPayload {
     roundNumber: number;
     redIncome: number; // $400/round
     blueWorkTimeReduction: number; // 0.45 = 45%
+  };
+
+  // Financial Events
+  'financial:paycheckReceived': {
+    amount: number;
+    balance: number;
+  };
+  'financial:redIncomeReceived': {
+    amount: number;
+    balance: number;
+  };
+  'financial:expenseIncurred': {
+    amount: number;
+    balance: number;
   };
 
   // Role Events

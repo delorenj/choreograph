@@ -15,6 +15,8 @@ import { GameStateMachine } from './systems/core/stateMachine/GameStateMachine';
 import { RoundManager } from './systems/core/roundManager';
 import { FinancialManager } from './systems/core/financialManager';
 import { UIManager } from './presentation/ui';
+import { BallRenderer } from './presentation/rendering';
+import { InputController } from './systems/input';
 import type { GameState } from './data/state/gameState';
 import type { RoundManagerConfig } from './systems/core/roundManager';
 import type { FinancialManagerConfig } from './systems/core/financialManager';
@@ -54,15 +56,16 @@ function initializePlayCanvas(): pc.Application {
  * Create basic scene (temporary - will be replaced with proper renderer)
  */
 function createBasicScene(app: pc.Application): void {
-  // Create camera entity - positioned for top-down angled view
+  // Create camera entity - positioned for isometric view at 35° angle (STORY-033)
   const camera = new pc.Entity('camera');
   camera.addComponent('camera', {
     clearColor: new pc.Color(0.15, 0.15, 0.2),
     farClip: 100,
   });
   app.root.addChild(camera);
-  camera.setPosition(0, 10, 8);
-  camera.setEulerAngles(-45, 0, 0);
+  // Position for 35° isometric view (fixed, no zoom/rotation)
+  camera.setPosition(0, 12, 12);
+  camera.setEulerAngles(-35, 0, 0);
 
   // Create directional light
   const light = new pc.Entity('light');
@@ -79,6 +82,20 @@ function createBasicScene(app: pc.Application): void {
   floor.addComponent('model', {
     type: 'plane',
   });
+
+  // Add static physics to floor
+  floor.addComponent('rigidbody', {
+    type: pc.BODYTYPE_STATIC,
+    friction: 0.5,
+    restitution: 0.2,
+  });
+
+  // Add box collision (plane collision uses box with minimal height)
+  floor.addComponent('collision', {
+    type: 'box',
+    halfExtents: new pc.Vec3(10, 0.1, 10), // Large flat surface
+  });
+
   app.root.addChild(floor);
   floor.setLocalScale(10, 1, 10);
   floor.setPosition(0, 0, 0);
@@ -136,21 +153,26 @@ async function initializeGameSystems(): Promise<{
     gamePhase: 'LOADING',
     blueBall: {
       id: 'blue',
-      role: 'blue',
       position: { x: -2, y: 1, z: 0 },
       velocity: { x: 0, y: 0, z: 0 },
       stress: 0,
-      currentTask: null,
-      isAI: true, // Will be updated based on role selection
+      isPlayerControlled: false, // Will be updated based on role selection
+      rapport: 100, // Start with full employment rapport
+      activeTaskId: null,
+      completedTasksThisRound: 0,
+      totalTasksThisRound: 0,
     },
     redBall: {
       id: 'red',
-      role: 'red',
       position: { x: 2, y: 1, z: 0 },
       velocity: { x: 0, y: 0, z: 0 },
       stress: 0,
-      currentTask: null,
-      isAI: true, // Will be updated based on role selection
+      isPlayerControlled: false, // Will be updated based on role selection
+      activeTaskId: null,
+      completedTasksThisRound: 0,
+      totalTasksThisRound: 0,
+      canRequestHelp: true,
+      isEmployed: false, // Will be set when employment event triggers
     },
     blueTasks: new Map(),
     redTasks: new Map(),
@@ -188,12 +210,7 @@ async function initializeGameSystems(): Promise<{
     paycheckInterval: config.round.paycheckInterval,
     paycheckAmount: config.blue.paycheck,
   };
-  const roundManager = new RoundManager(
-    eventBus,
-    stateMachine,
-    roundConfig,
-    financialManager
-  );
+  const roundManager = new RoundManager(eventBus, stateMachine, roundConfig, financialManager);
 
   // Initialize Presentation layer (UI)
   const uiManager = new UIManager(eventBus, stateMachine, entityStore);
@@ -238,6 +255,21 @@ async function main(): Promise<void> {
     // Create basic scene
     createBasicScene(app);
 
+    // Initialize rendering layer (3D visualization)
+    const ballRenderer = new BallRenderer({
+      app,
+      entityStore: gameSystems.entityStore,
+    });
+
+    // Initialize input controller for player movement
+    const inputController = new InputController({
+      app,
+      entityStore: gameSystems.entityStore,
+      blueBallEntity: ballRenderer.getBlueBallEntity(),
+      redBallEntity: ballRenderer.getRedBallEntity(),
+      moveForce: 10, // Configurable force magnitude
+    });
+
     // Start the application
     app.start();
 
@@ -246,6 +278,8 @@ async function main(): Promise<void> {
       eventBus: gameSystems.eventBus,
       stateMachine: gameSystems.stateMachine,
       currentState: gameSystems.stateMachine.getState(),
+      ballRenderer,
+      inputController,
     });
   } catch (error) {
     console.error('Failed to initialize Choreograph:', error);

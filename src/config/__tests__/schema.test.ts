@@ -226,9 +226,7 @@ describe('RapportConfigSchema', () => {
 
 describe('EmploymentEventConfigSchema', () => {
   it('should validate valid employment event config', () => {
-    const result = EmploymentEventConfigSchema.safeParse(
-      DEFAULT_EMPLOYMENT_EVENT_CONFIG
-    );
+    const result = EmploymentEventConfigSchema.safeParse(DEFAULT_EMPLOYMENT_EVENT_CONFIG);
     expect(result.success).toBe(true);
   });
 
@@ -388,35 +386,18 @@ describe('ScenarioConfigSchema', () => {
 
 describe('Default Configuration Validation', () => {
   it('should validate all default configs match their schemas', () => {
-    expect(RoundConfigSchema.safeParse(DEFAULT_ROUND_CONFIG).success).toBe(
+    expect(RoundConfigSchema.safeParse(DEFAULT_ROUND_CONFIG).success).toBe(true);
+    expect(BlueBallConfigSchema.safeParse(DEFAULT_BLUE_CONFIG).success).toBe(true);
+    expect(RedBallConfigSchema.safeParse(DEFAULT_RED_CONFIG).success).toBe(true);
+    expect(StressConfigSchema.safeParse(DEFAULT_STRESS_CONFIG).success).toBe(true);
+    expect(RapportConfigSchema.safeParse(DEFAULT_RAPPORT_CONFIG).success).toBe(true);
+    expect(EmploymentEventConfigSchema.safeParse(DEFAULT_EMPLOYMENT_EVENT_CONFIG).success).toBe(
       true
     );
-    expect(BlueBallConfigSchema.safeParse(DEFAULT_BLUE_CONFIG).success).toBe(
-      true
-    );
-    expect(RedBallConfigSchema.safeParse(DEFAULT_RED_CONFIG).success).toBe(
-      true
-    );
-    expect(StressConfigSchema.safeParse(DEFAULT_STRESS_CONFIG).success).toBe(
-      true
-    );
-    expect(RapportConfigSchema.safeParse(DEFAULT_RAPPORT_CONFIG).success).toBe(
-      true
-    );
-    expect(
-      EmploymentEventConfigSchema.safeParse(DEFAULT_EMPLOYMENT_EVENT_CONFIG)
-        .success
-    ).toBe(true);
     expect(UIConfigSchema.safeParse(DEFAULT_UI_CONFIG).success).toBe(true);
-    expect(
-      FinancialConfigSchema.safeParse(DEFAULT_FINANCIAL_CONFIG).success
-    ).toBe(true);
-    expect(
-      TutorialConfigSchema.safeParse(DEFAULT_TUTORIAL_CONFIG).success
-    ).toBe(true);
-    expect(ScenarioConfigSchema.safeParse(DEFAULT_SCENARIO).success).toBe(
-      true
-    );
+    expect(FinancialConfigSchema.safeParse(DEFAULT_FINANCIAL_CONFIG).success).toBe(true);
+    expect(TutorialConfigSchema.safeParse(DEFAULT_TUTORIAL_CONFIG).success).toBe(true);
+    expect(ScenarioConfigSchema.safeParse(DEFAULT_SCENARIO).success).toBe(true);
   });
 
   it('should validate all default red task types', () => {
@@ -427,10 +408,7 @@ describe('Default Configuration Validation', () => {
   });
 
   it('should ensure red task type weights sum to reasonable value', () => {
-    const totalWeight = DEFAULT_RED_TASK_TYPES.reduce(
-      (sum, task) => sum + task.weight,
-      0
-    );
+    const totalWeight = DEFAULT_RED_TASK_TYPES.reduce((sum, task) => sum + task.weight, 0);
     // Allow some flexibility in total weight (should be close to 1.0)
     expect(totalWeight).toBeGreaterThan(0.95);
     expect(totalWeight).toBeLessThanOrEqual(1.0);

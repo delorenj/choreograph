@@ -39,16 +39,12 @@ export class ConfigLoader {
 
       if (!response.ok) {
         if (response.status === 404) {
-          console.warn(
-            `Scenario '${scenarioId}' not found. Using default scenario.`
-          );
+          console.warn(`Scenario '${scenarioId}' not found. Using default scenario.`);
           this.activeConfig = DEFAULT_SCENARIO;
           return Object.freeze({ ...DEFAULT_SCENARIO });
         }
 
-        throw new Error(
-          `Failed to load scenario: ${scenarioId} (HTTP ${response.status})`
-        );
+        throw new Error(`Failed to load scenario: ${scenarioId} (HTTP ${response.status})`);
       }
 
       const rawConfig = await response.json();
@@ -56,9 +52,7 @@ export class ConfigLoader {
 
       if (!validatedConfig.success) {
         throw new Error(
-          `Invalid scenario configuration:\n${this.formatValidationErrors(
-            validatedConfig.errors!
-          )}`
+          `Invalid scenario configuration:\n${this.formatValidationErrors(validatedConfig.errors!)}`
         );
       }
 
@@ -115,9 +109,7 @@ export class ConfigLoader {
    * Format validation errors into readable message
    */
   private formatValidationErrors(errors: ConfigValidationError[]): string {
-    return errors
-      .map((err) => `  - ${err.field}: ${err.message}`)
-      .join('\n');
+    return errors.map((err) => `  - ${err.field}: ${err.message}`).join('\n');
   }
 
   /**
@@ -175,9 +167,7 @@ export class ConfigLoader {
 
     // Use globalThis to support both browser and Node environments
     const setInterval =
-      typeof globalThis.setInterval !== 'undefined'
-        ? globalThis.setInterval
-        : null;
+      typeof globalThis.setInterval !== 'undefined' ? globalThis.setInterval : null;
 
     if (setInterval === null) {
       console.warn('setInterval not available, hot reload disabled');
@@ -191,12 +181,9 @@ export class ConfigLoader {
 
       try {
         // Simple polling: fetch config and check if it's different
-        const response = await fetch(
-          `/scenarios/${this.activeConfig.id}.json`,
-          {
-            cache: 'no-store', // Bypass cache
-          }
-        );
+        const response = await fetch(`/scenarios/${this.activeConfig.id}.json`, {
+          cache: 'no-store', // Bypass cache
+        });
 
         if (!response.ok) {
           return;
@@ -223,9 +210,7 @@ export class ConfigLoader {
   disableHotReload(): void {
     if (this.hotReloadInterval !== null) {
       const clearInterval =
-        typeof globalThis.clearInterval !== 'undefined'
-          ? globalThis.clearInterval
-          : null;
+        typeof globalThis.clearInterval !== 'undefined' ? globalThis.clearInterval : null;
 
       if (clearInterval !== null) {
         clearInterval(this.hotReloadInterval);

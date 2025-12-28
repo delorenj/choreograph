@@ -10,7 +10,6 @@
 
 import { EventBus } from '../../../data/events/eventBus';
 import { Round, RoundPhase, RoundSummary } from '../../../data/entities';
-import { GameEvent } from '../stateMachine/types';
 import { GameStateMachine } from '../stateMachine/GameStateMachine';
 import { FinancialManager } from '../financialManager';
 

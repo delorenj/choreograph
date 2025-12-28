@@ -52,9 +52,7 @@ describe('ConfigLoader', () => {
         status: 500,
       });
 
-      await expect(loader.loadScenario('test')).rejects.toThrow(
-        'Failed to load scenario'
-      );
+      await expect(loader.loadScenario('test')).rejects.toThrow('Failed to load scenario');
     });
 
     it('should throw error on invalid scenario config', async () => {
@@ -68,9 +66,7 @@ describe('ConfigLoader', () => {
         json: async () => invalidConfig,
       });
 
-      await expect(loader.loadScenario('test')).rejects.toThrow(
-        'Invalid scenario configuration'
-      );
+      await expect(loader.loadScenario('test')).rejects.toThrow('Invalid scenario configuration');
     });
 
     it('should return frozen config object', async () => {
@@ -124,9 +120,7 @@ describe('ConfigLoader', () => {
 
       expect(result.success).toBe(false);
       expect(result.errors).toBeDefined();
-      expect(result.errors!.some((e) => e.field.includes('durationSeconds'))).toBe(
-        true
-      );
+      expect(result.errors!.some((e) => e.field.includes('durationSeconds'))).toBe(true);
     });
 
     it('should handle missing required fields', () => {
@@ -145,9 +139,7 @@ describe('ConfigLoader', () => {
 
   describe('getActiveConfig', () => {
     it('should throw error when no config loaded', () => {
-      expect(() => loader.getActiveConfig()).toThrow(
-        'No scenario loaded'
-      );
+      expect(() => loader.getActiveConfig()).toThrow('No scenario loaded');
     });
 
     it('should return active config after loading', async () => {
@@ -232,9 +224,7 @@ describe('ConfigLoader', () => {
 
   describe('reloadConfig', () => {
     it('should throw error when no config loaded', async () => {
-      await expect(loader.reloadConfig()).rejects.toThrow(
-        'No scenario loaded to reload'
-      );
+      await expect(loader.reloadConfig()).rejects.toThrow('No scenario loaded to reload');
     });
 
     it('should reload current scenario', async () => {

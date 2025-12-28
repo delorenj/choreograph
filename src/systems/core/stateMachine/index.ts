@@ -5,4 +5,4 @@
  */
 
 export { GameStateMachine, InvalidTransitionError } from './GameStateMachine';
-export { GameState, GameEvent, StateTransitionTable } from './types';
+export type { GameState, GameEvent, StateTransitionTable } from './types';

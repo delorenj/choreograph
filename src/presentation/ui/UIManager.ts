@@ -238,7 +238,7 @@ export class UIManager {
       roundNumberSpan.textContent = roundNumber.toString();
     }
 
-    if (paycheckIndicator) {
+    if (paycheckIndicator && paycheckIndicator instanceof HTMLElement) {
       paycheckIndicator.style.display = isPaycheckRound ? 'inline' : 'none';
     }
   }

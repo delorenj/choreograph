@@ -44,6 +44,12 @@ function initializePlayCanvas(): pc.Application {
   app.setCanvasFillMode(pc.FILLMODE_FILL_WINDOW);
   app.setCanvasResolution(pc.RESOLUTION_AUTO);
 
+  // Enable and configure physics system
+  if (app.systems.rigidbody) {
+    // Set gravity (Y-axis is up in PlayCanvas)
+    app.systems.rigidbody.gravity.set(0, -9.8, 0);
+  }
+
   // Ensure canvas is resized when window changes size
   window.addEventListener('resize', () => {
     app.resizeCanvas();
